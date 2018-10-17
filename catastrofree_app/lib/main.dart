@@ -13,10 +13,51 @@ void main() {
   ));
 }
 
-class MyAppHome extends StatelessWidget {
-  // This widget is the root of your application.
+class MyAppHome extends StatefulWidget {
+  final drawerItems = [
+    new DrawerItem("Statistics", Icons.developer_board),
+    new DrawerItem("Safe Spots", Icons.directions),
+    new DrawerItem("Donate to tragedies", Icons.monetization_on),
+  ];
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppHomeState();
+  }
+}
+
+class _MyAppHomeState extends State<MyAppHome> {
+  int _selectedDrawerIndex = 0;
+  int get selectedDrawerIndex => _selectedDrawerIndex;
+  set selectedDrawerIndex(int value){
+    setState(() {
+          _selectedDrawerIndex = value;
+          Navigator.of(context).pop();
+        });
+  }
+  _getDrawerItemWidget(int pos){
+    switch(pos){
+      case 0: return ScoreWidget();
+      case 1: return null;
+      case 2: return null;
+      default: print("Error");
+      return Text("Out of bounds widget!");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    List <Widget> drawerOptions = <Widget>[];
+    for(var i =0; i< widget.drawerItems.length; i++){
+      var dItem = widget.drawerItems[i];
+      drawerOptions.add(
+        ListTile(
+          leading: Icon(dItem.icon),
+          title: Text(dItem.title),
+          selected: i == selectedDrawerIndex,
+          onTap: () => selectedDrawerIndex = i,
+        )
+      );
+    }
     return Scaffold(          
         body: CustomScrollView(
           slivers: <Widget>[
@@ -31,33 +72,34 @@ class MyAppHome extends StatelessWidget {
                 ),
               ),
             ),
-            ScoreWidget(),
+            _getDrawerItemWidget(_selectedDrawerIndex),
           ],
           ),
           drawer: Drawer(
           child: ListView(
             children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.developer_board), //(dev) edit this icon
-              title: Text('Drawer Title'), //(dev) set this title
-              onTap: () {
-                //(dev) this should reopen the home screen if not already open
-                Navigator.pop(context); // close the drawer - currently closes the drawer
-              },
+            UserAccountsDrawerHeader(
+              accountName: Text("Rahul",style: TextStyle(fontWeight: FontWeight.bold),), 
+              accountEmail: null,
+              ),
+            DrawerHeader(
+              child: Text(
+                "Score : 1000",
+                style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,),
+                ),
             ),
-            ListTile(
-              leading: Icon(Icons.directions),
-              title: Text("Closest Safespots"),
-              onTap: null,
-            ),
-            ListTile(
-              leading: Icon(Icons.monetization_on),
-              title: Text("Fund Local Disasters"),
-              onTap: null,
-            ),
+            Column(children: drawerOptions,),
           ],
           )
         ),
     );
   }
+}
+
+class DrawerItem {
+  String title;
+  IconData icon;
+  DrawerItem(this.title,this.icon);
 }
