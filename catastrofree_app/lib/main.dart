@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'scoreCards.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -21,7 +22,7 @@ class MyAppHome extends StatelessWidget {
         title: Text('Main Screen', style: TextStyle( fontWeight: FontWeight.bold),),
       ),
       body: Center(
-        child: Text("Testing"),
+        child: ScoreWidget(),
       ),
       drawer: Drawer(
         child: ListView(
