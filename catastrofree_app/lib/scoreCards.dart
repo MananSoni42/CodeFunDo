@@ -33,8 +33,8 @@ class ScoreWidget extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    Widget centralWidget = ListView(
-       children: getScoreCards(),
+    Widget centralWidget = SliverList(
+       delegate: SliverChildListDelegate(getScoreCards()),
     );
     return centralWidget;
   }
