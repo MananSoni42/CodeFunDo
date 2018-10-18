@@ -2,17 +2,31 @@ import 'package:flutter/material.dart';
 import 'scoreCards.dart';
 import 'standardScaffold.dart';
 import 'donateScreen.dart';
+import 'map_screen.dart';
+import 'aboutUs.dart';
+import 'disaster_tips.dart';
+import 'colors.dart';
+
+final ThemeData _kShrineTheme = _buildShrineTheme();
+
+ThemeData _buildShrineTheme() {
+  final ThemeData base = ThemeData.light();
+    return base.copyWith(
+      accentColor: secondaryMain,
+      primaryColor: primaryMain,
+      cardColor: Color(0xFFBDBDBD),
+      scaffoldBackgroundColor: Color(0xFFEEEEEE),
+      buttonColor: secondaryDark,
+      textSelectionColor: Colors.lightBlue,
+    );
+}
 
 void main() {
   runApp(MaterialApp(
     title: 'Catastrofree',
     debugShowCheckedModeBanner: false,
     home: MyAppHome(),
-    theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.blue,
-        accentColor: Colors.blueAccent,
-      ),
+    theme: _kShrineTheme
   ));
 }
 
