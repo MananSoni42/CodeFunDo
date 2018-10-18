@@ -38,7 +38,7 @@ class _MyAppHomeState extends State<MyAppHome> {
   }
   _getDrawerItemWidget(int pos){
     switch(pos){
-      case 0:       
+      case 0:
       return CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
@@ -48,16 +48,16 @@ class _MyAppHomeState extends State<MyAppHome> {
                 title: Text("Catastrofree"),
                 collapseMode: CollapseMode.parallax,
                 background: Container(
-                  decoration: BoxDecoration(color: Theme.of(context).primaryColor),                  
+                  decoration: BoxDecoration(color: Theme.of(context).primaryColor),
                 ),
               ),
             ),
-            ScoreWidget(),      
+            ScoreWidget(),
           ],
           );
-      case 1: 
+      case 1:
       return DonateWidget();
-      case 2: 
+      case 2:
       return ListView(
         children: <Widget>[],
         );
@@ -80,7 +80,7 @@ class _MyAppHomeState extends State<MyAppHome> {
         )
       );
     }
-    return StdScaffold(   
+    return StdScaffold(
         showAppBar: widget.drawerItems[_selectedDrawerIndex].appBarEnabled,
         title: widget.drawerItems[_selectedDrawerIndex].appBarTitle,
         body: _getDrawerItemWidget(_selectedDrawerIndex),
@@ -88,7 +88,7 @@ class _MyAppHomeState extends State<MyAppHome> {
         child: ListView(
           children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text("Rahul",style: TextStyle(fontWeight: FontWeight.bold),), 
+            accountName: Text("Rahul",style: TextStyle(fontWeight: FontWeight.bold),),
             accountEmail: null,
             ),
           DrawerHeader(
