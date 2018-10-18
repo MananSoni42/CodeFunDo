@@ -6,6 +6,7 @@ import 'donateScreen.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Catastrofree',
+    debugShowCheckedModeBanner: false,
     home: MyAppHome(),
     theme: ThemeData(
         brightness: Brightness.dark,
