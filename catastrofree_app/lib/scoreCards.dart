@@ -18,10 +18,7 @@ class ScoreWidget extends StatelessWidget {
               subtitle: Text("Other Disaster Info"),
             ),
             Container(padding: const EdgeInsets.all(32.0),
-            child: Text('''Long long time ago disaster was a very big problem.
-            Then one day it was all sorted by a group of BITS Pilani students who made
-            a brilliant app called Catastrofree. It was an instant hit!. This text is
-            deliberately long so that the developer can check that it is wrapping correctly.''',
+            child: Text('''Long long time ago disaster was a very big problem.Then one day it was all sorted by a group of BITS Pilani students who made a brilliant app called Catastrofree. It was an instant hit!. This text is deliberately long so that the developer can check that it is wrapping correctly.''',
             softWrap: true,)
             ,)
           ],          
