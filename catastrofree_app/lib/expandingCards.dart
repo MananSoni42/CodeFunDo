@@ -23,34 +23,32 @@ class _ExpandableCardWidget extends State <ExpandableCardWidget> {
     setState(() {
           _expanded = !_expanded;
         });
-    print("Toggled!!");
   }
   _getChildren(bool expanded){
-    print("Getting children");
     if(expanded){
       return <Widget>[
         widget.body1,
         Divider(),
         widget.body2,
-        IconButton(
-              icon: Icon(Icons.arrow_drop_up),
-              onPressed: toggle,
-        ),
       ];
     }
     else {
       return <Widget>[
         widget.body1,
-        Divider(),
-        IconButton(onPressed: toggle, icon: Icon(Icons.arrow_drop_down),),
       ];
     }
   }
   @override
   Widget build(BuildContext context) {
-    return Card(child: Column(
-      children: _getChildren(_expanded),
-    ),);
+    return GestureDetector(
+      child: Card(
+        child: Column(
+        children: _getChildren(_expanded),
+        ),
+        elevation: 2.0,
+        margin: EdgeInsets.all(10.0),   
+      ),
+      onTap: toggle,
+    );
   }
 }
-
