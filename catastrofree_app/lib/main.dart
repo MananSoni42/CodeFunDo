@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'scoreCards.dart';
 import 'standardScaffold.dart';
+import 'donateScreen.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -54,7 +55,7 @@ class _MyAppHomeState extends State<MyAppHome> {
           ],
           );
       case 1: 
-      return null;
+      return DonateWidget();
       case 2: 
       return null;
       default: print("Error");
