@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "326508055362-q6br6p19m6temfm1c3l4qj606dofeddi.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.edge.catastrofree",
-            "certificate_hash": "57cd33efbae32ffcd2eb7f389fde2762f783f566"
-          }
-        },
-        {
           "client_id": "326508055362-ap4jnpu5us93ldc576qmst7bppfdt9pe.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "326508055362-ap4jnpu5us93ldc576qmst7bppfdt9pe.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

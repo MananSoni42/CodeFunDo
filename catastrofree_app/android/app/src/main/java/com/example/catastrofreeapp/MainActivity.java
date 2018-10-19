@@ -1,4 +1,4 @@
-package com.example.catastrofreeapp;
+package com.edge.catastrofree;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

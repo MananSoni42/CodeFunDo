@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+final GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email',
+  ]
+);
 
 class SignInWidget extends StatefulWidget{
   SignInWidget({Key key, this.title}): super(key: key);
@@ -43,19 +49,17 @@ class _SignInWidgetState extends State <SignInWidget> {
 
   Future <String> _testSignInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    print("First");
+    print(googleUser.displayName);
+    print(googleUser.email);
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    print('Second');
     final FirebaseUser user = await _auth.signInWithGoogle(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-    print("Stage");
     assert(user.email != null);
     assert(user.displayName != null);
     assert(!user.isAnonymous);
     assert(await user.getIdToken() != null);
-
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
     print("Sign in done");
@@ -77,7 +81,7 @@ class _SignInWidgetState extends State <SignInWidget> {
         ),
         FlatButton(
           child: Text("Sign in with google"),
-          onPressed: () => _testSignInWithGoogle().then((String str){
+          onPressed: () => _testSignInAnon().then((String str){
             Scaffold.of(context).showSnackBar(
               SnackBar(content: Text(str),)
             );
