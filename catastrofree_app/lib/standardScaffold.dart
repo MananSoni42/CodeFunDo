@@ -19,11 +19,6 @@ class _StdScaffold extends State<StdScaffold> {
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
-              leading: IconButton(
-                icon: Icon(Icons.menu),
-                tooltip: "Navigation menu",
-                onPressed: null,
-              ),
               title: widget.title,
             )
           : null,
