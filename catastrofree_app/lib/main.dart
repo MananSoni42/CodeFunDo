@@ -7,6 +7,9 @@ import 'aboutUs.dart';
 import 'disaster_tips.dart';
 import 'colors.dart';
 import 'auth.dart';
+import 'dart:async';
+import 'auth_handler.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -34,9 +37,8 @@ void main() {
 class MyAppHome extends StatefulWidget {
   final drawerItems = [
     DrawerItem("Statistics", Icons.developer_board, false, null),
+    DrawerItem("Donate to tragedies", Icons.monetization_on, true, Text("Donate")),
     DrawerItem("Safe Spots", Icons.directions, true, Text("Safe Spots")),
-    DrawerItem(
-        "Donate to tragedies", Icons.monetization_on, true, Text("Donate")),
   ];
   @override
   State<StatefulWidget> createState() {
@@ -45,6 +47,14 @@ class MyAppHome extends StatefulWidget {
 }
 
 class _MyAppHomeState extends State<MyAppHome> {
+  UserAccountsDrawerHeader myUserAccountsDrawerHeader = UserAccountsDrawerHeader(
+    accountName: Text(
+      "Placeholder Text",
+      style: TextStyle(fontWeight: FontWeight.bold),
+    ),
+    accountEmail: null,
+  );
+
   int _selectedDrawerIndex = 0;
   int get selectedDrawerIndex => _selectedDrawerIndex;
   set selectedDrawerIndex(int value) {
@@ -94,35 +104,30 @@ class _MyAppHomeState extends State<MyAppHome> {
         selected: i == selectedDrawerIndex,
         onTap: () => selectedDrawerIndex = i,
       ));
-    }
+    } 
     return StdScaffold(
       showAppBar: widget.drawerItems[_selectedDrawerIndex].appBarEnabled,
       title: widget.drawerItems[_selectedDrawerIndex].appBarTitle,
       body: _getDrawerItemWidget(_selectedDrawerIndex),
       drawer: Drawer(
-          child: ListView(
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text(
-              "Rahul",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            accountEmail: null,
-          ),
-          DrawerHeader(
-            child: Text(
-              "Score : 1000",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
+        child: ListView(
+          children: <Widget>[
+            StdUserAccountDrawerHeader(),
+            DrawerHeader(
+              child: Text(
+                "Score : 1000",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
-          ),
-          Column(
-            children: drawerOptions,
-          ),
-        ],
-      )),
+            Column(
+              children: drawerOptions,
+            ),
+          ],
+        )
+      ),
     );
   }
 }
