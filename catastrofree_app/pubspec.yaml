@@ -22,6 +22,8 @@ dependencies:
   firebase_analytics: 0.3.0
   firebase_auth: ^0.6.2+1
   google_sign_in: ^3.2.1
+  # flutter_billing: ^0.2.5
+  firebase_messaging: ^2.0.2
 
 
 dev_dependencies:

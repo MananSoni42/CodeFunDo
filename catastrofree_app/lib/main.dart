@@ -9,6 +9,8 @@ import 'colors.dart';
 import 'auth.dart';
 import 'dart:async';
 import 'auth_handler.dart';
+import 'messaging_test.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -38,6 +40,7 @@ class MyAppHome extends StatefulWidget {
     DrawerItem("Statistics", Icons.developer_board, false, null),
     DrawerItem("Donate to tragedies", Icons.monetization_on, true, Text("Donate")),
     DrawerItem("Safe Spots", Icons.directions, true, Text("Safe Spots")),
+    DrawerItem("Messaging test", Icons.payment, true, Text("Messaging")),
   ];
   @override
   State<StatefulWidget> createState() {
@@ -46,6 +49,7 @@ class MyAppHome extends StatefulWidget {
 }
 
 class _MyAppHomeState extends State<MyAppHome> {
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   UserAccountsDrawerHeader myUserAccountsDrawerHeader = UserAccountsDrawerHeader(
     accountName: Text(
       "Placeholder Text",
@@ -87,6 +91,8 @@ class _MyAppHomeState extends State<MyAppHome> {
       return DonateWidget();
       case 2:
       return null;
+      case 3:
+      return MessagingTestWidget(_firebaseMessaging);
       default: print("Error");
       return Text("Out of bounds widget!");
     }
