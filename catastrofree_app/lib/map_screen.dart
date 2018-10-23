@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:map_view/map_view.dart';
 
-const API_KEY = "AIzaSyDYE0aMg1wP17B0GPB5hhiZnLctoo5CXDA";
+const API_KEY = "AIzaSyDwk8miCPs0uLc0IsPPvmg2zMOxZtfTcfg";
 
 class MapWidget extends StatefulWidget {
   @override
