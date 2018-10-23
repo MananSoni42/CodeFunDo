@@ -53,7 +53,7 @@ class _StdUserAccountDrawerHeaderState extends State <StdUserAccountDrawerHeader
                 image: DecorationImage(
                   image: NetworkImage('https://t4.ftcdn.net/jpg/01/88/85/07/240_F_188850771_lWtSgpYaLn2PC2h8ZVhtqjVjlgp2U0M5.jpg'),
                 )
-              );
+              ));
               //onDetailsPressed: () => signInDialog(context));
   }
 }

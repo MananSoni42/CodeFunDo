@@ -21,7 +21,7 @@ class _ScoreWidgetState extends State<ScoreWidget>
   void initState() {
     super.initState();
     animation = AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 750),
       vsync: this,
     )..addListener(() {
         setState(() {
@@ -52,18 +52,20 @@ class _ScoreWidgetState extends State<ScoreWidget>
       elevation: 0.0,
       margin: EdgeInsets.all(5.0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 35.0),
-        child: Row(
+        padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 5.0),
+        child: Column(
           children: <Widget>[
-            Expanded(
+            Center(
               child: Text(
-                "Your Disaster Score is : ",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                "Your Disaster Score",
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
+
               ),
             ),
             Container(
-              padding: EdgeInsets.all(15.0),
+              margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+              padding: EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 color: circleColor,
                 shape: BoxShape.circle,
@@ -73,12 +75,13 @@ class _ScoreWidgetState extends State<ScoreWidget>
                   dispScore.toString().substring(0, 3),
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
-                      fontSize: 35.0,
+                      fontSize: 50.0,
                       color: textColor),
                 ),
                 onTap: updateScore,
               ),
-            )
+            ),
+            Divider(),
           ],
         ),
       ),
