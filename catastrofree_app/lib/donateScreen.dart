@@ -127,6 +127,19 @@ class DonateWidget extends StatelessWidget {
   buildFromMap(Map map) {
     int peopleAffected = map['affected'];
     String date = map['month'].toString() + "/" + map['year'].toString();
+    FlatButton x;
+    if (map["is_enabled"]){
+      x = FlatButton(
+                child: Text("DONATE"),
+                onPressed: () => _launchURL(map["pay_link"]),
+              );
+    }
+    else{
+      x = FlatButton(
+                child: Text("CLOSED"),
+                onPressed: () => null,
+              );
+    }
     Widget widget1 = Column(
       children: <Widget>[
         ListTile(
@@ -144,10 +157,7 @@ class DonateWidget extends StatelessWidget {
                 child: Text("READ MORE"),
                 onPressed: () => _launchURL(map["link"]),
               ),
-              FlatButton(
-                child: Text("DONATE"),
-                onPressed: () => _launchURL(map["pay_link"]),
-              )
+              x
             ],
           ),
         ),
