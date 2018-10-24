@@ -23,19 +23,19 @@ class _TipsListState extends State<TipsList> {
         'Stuck in an Earthquake ?',
         Text(" • Drop down; take cover under a desk or table and hold on.\n • If you are outdoors, find a clear spot away from buildings, trees, and power lines. Drop to the ground.\n • If you are in bed, hold on and stay there, protecting your head with a pillow.\n • If you are in a car, slow down and drive to a clear place. Stay in the car until the shaking stops.",
             softWrap: true),
-        Icon(Icons.help)),
+        Icon(AssetImage('assets/images/earthquake_symbol.jpg'))),
     Tip(
         false,
         'Stuck in a Volcano ?',
         Text(" • If you live near an active volcano, keep goggles and a mask in an emergency kit, along with a flashlight and a working, battery-operated radio.\n • Evacuate only as recommended by authorities to stay clear of lava, mud flows, and flying rocks and debris.\n • Avoid river areas and low-lying regions.\n • Be aware that ash may put excess weight on your roof and need to be swept away. Wear protection during cleanups.",
             softWrap: true),
-        Icon(Icons.help)),
+        Icon(AssetImage('assets/images/volcano_symbol.jpg'))),
     Tip(
         false,
         'Stuck in a Cyclone ?',
         Text(" • In case of a storm surge/tide warning, or other flooding, know your nearest safe high ground and the safest access route to it.\n • Put wooden or plastic outdoor furniture in your pool or inside with other loose items.\n • Close shutters or board-up or heavily tape all windows. Draw curtains and lock doors.\n • Wear strong shoes (not thongs) and tough clothing for protection.\n • Lock doors; turn off power, gas, and water; take your evacuation and emergency kits",
             softWrap: true),
-        Icon(Icons.help)),
+        Icon(AssetImage('assets/images/storm_symbol.jpg'))),
     Tip(
         false,
         'Stuck in a Tsunami ?',
@@ -118,113 +118,6 @@ class _TipsListState extends State<TipsList> {
         ))
       ],
     );
-    /* ListView(
-      children: <Widget>[
-        new Padding(
-          padding: EdgeInsets.all(10.0),
-          child: ExpansionPanelList(
-            expansionCallback: (int index, bool isExpanded){
-              setState((){
-                tips[index].isExpanded = !tips[index].isExpanded;
-              });
-            },
-            children: tips.map((Tip tip){
-              return ExpansionPanel(
-                headerBuilder: (BuildContext context, bool isExpanded){
-                  return ListTile(
-                    leading: tip.icon,
-                    title: new Text(
-                      tip.header,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600
-                      ),
-                    )
-                  );
-                },
-                isExpanded: tip.isExpanded,
-                body: tip.body
-              );
-            }).toList(),
-          )
-        )
-      ],
-    ); */
+
   }
 }
-
-// getTips(){
-//   return <Widget>[];
-//     /* Card(
-//       child: Column(
-//       children: [ListTile(
-//         leading: Icon(Icons.help),
-//         title: Text('What to do in case of an earthquake?'),
-//         subtitle: Text("by Dr DooLittle:"),
-//       ),
-//       Container(
-//             padding: const EdgeInsets.all(32.0),
-//             child: Text(
-//               '''Long long time ago disaster was a very big problem.Then one day it was all sorted by a group of BITS Pilani students who made a brilliant app called Catastrofree. It was an instant hit!. This text is deliberately long so that the developer can check that it is wrapping correctly.''',
-//               softWrap: true,
-//             ),
-//       )]
-//     ),) ,
-//     Card(child: Column(
-//       children: [
-//         ListTile(
-//         leading: Icon(Icons.help),
-//         title: Text('What to do in case of an earthquake?'),
-//         subtitle: Text("by Dr DooLittle:"),
-//       ),
-//       Container(
-//             padding: const EdgeInsets.all(32.0),
-//             child: Text(
-//               '''Long long time ago disaster was a very big problem.Then one day it was all sorted by a group of BITS Pilani students who made a brilliant app called Catastrofree. It was an instant hit!. This text is deliberately long so that the developer can check that it is wrapping correctly.''',
-//               softWrap: true,
-//             ),
-//           ),
-//         ]
-//       ),
-//     )
-//   ]; */
-// }
-
-// class DisasterTipWidget extends StatelessWidget{
-//   final double _appBarHeight = 256.0;
-//   @override
-//   Widget build(BuildContext context) {
-//     return CustomScrollView(
-//           slivers: <Widget>[
-//             SliverAppBar(
-//               expandedHeight: _appBarHeight,
-//               pinned: true,
-//               flexibleSpace: FlexibleSpaceBar(
-//                 title: Text("Disaster tips", softWrap: true,),
-//                 collapseMode: CollapseMode.parallax,
-//                 background: Stack(
-//                   fit: StackFit.expand,
-//                   children: <Widget>[
-//                     Image(
-//                       image:AssetImage("assets/images/disasterPic.jpeg"),
-//                       fit: BoxFit.cover,
-//                       height: _appBarHeight,
-//                     ),
-//                     DecoratedBox(
-//                       decoration:BoxDecoration(
-//                         gradient: LinearGradient(
-//                           begin: Alignment(0.0, -1.0),
-//                           end:Alignment(0.0, -0.4),
-//                           colors: <Color>[Color(0x60000000), Color(0x10000000)],
-//                         )
-//                       ),
-//                     )
-//                   ]
-//                 )
-//               ),
-//             ),
-//             SliverList(delegate: SliverChildListDelegate())
-//         ],
-//     );
-//   }
-// }
