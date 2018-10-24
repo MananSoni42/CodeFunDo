@@ -38,7 +38,6 @@ class MyAppHome extends StatefulWidget {
     DrawerItem(
         "Donate to tragedies", Icons.monetization_on, true, Text("Donate")),
     DrawerItem("Safe Spots", Icons.directions, true, Text("Safe Spots")),
-    DrawerItem("Map", Icons.location_on, false, null),
     DrawerItem("Disaster Tips", Icons.info, false, null),
     DrawerItem("About", Icons.help, true, Text("About us")),
     DrawerItem("Logout", Icons.account_circle, false, null),
@@ -69,14 +68,12 @@ class _MyAppHomeState extends State<MyAppHome> {
       case 1:
         return DonateWidget();
       case 2:
-        return null;
-      case 3:
         return MapWidget();
-      case 4:
+      case 3:
         return TipsList();
-      case 5:
+      case 4:
         return AboutUsWidget();
-      case 6:
+      case 5:
         signOut() async {
           logout();
           setState(() {
