@@ -66,23 +66,6 @@ class _MyAppHomeState extends State<MyAppHome> {
     switch (pos) {
       case 0:
         return ScoreCardsWidget();
-      /* CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              expandedHeight: 256.0,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text("Catastrofree"),
-                collapseMode: CollapseMode.parallax,
-                background: Container(
-                  decoration:
-                      BoxDecoration(color: Theme.of(context).primaryColor),
-                ),
-              ),
-            ),
-            ScoreWidget(),
-          ],
-          );
       case 1:
         return DonateWidget();
       case 2:

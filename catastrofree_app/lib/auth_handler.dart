@@ -4,18 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-/* Future <void> getCurrentUser(StdUserAccountDrawerHeader header) async {
-  FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
-  if(currentUser != null)
-  {
-    
-    return currentUser;
-  }
-  else {
-    return null;
-  }
-} */
-
 class StdUserAccountDrawerHeader extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

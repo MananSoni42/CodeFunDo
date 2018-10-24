@@ -125,7 +125,6 @@ class DonateWidget extends StatelessWidget {
   }
 
   buildFromMap(Map map) {
-    //int peopleAffected = map['affected'];
     String date = map['month'].toString() + "/" + map['year'].toString();
     FlatButton x;
     if (map["is_enabled"]){

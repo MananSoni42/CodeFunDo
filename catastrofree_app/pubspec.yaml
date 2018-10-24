@@ -22,7 +22,6 @@ dependencies:
   firebase_analytics: 0.3.0
   firebase_auth: ^0.6.2+1
   google_sign_in: ^3.2.1
-  # flutter_billing: ^0.2.5
   firebase_messaging: ^2.0.2
   map_view: ^0.0.14
   url_launcher: ^4.0.1
@@ -38,10 +37,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
   assets:
@@ -54,22 +49,12 @@ flutter:
     - assets/images/tsunami_symbol.png
     - assets/images/disaster_tips_banner.jpg
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.io/assets-and-images/#from-packages
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     - family: Roboto
       fonts:

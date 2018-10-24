@@ -31,13 +31,10 @@ class ScoreCardsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* Widget centralWidget = SliverList(
-      delegate: SliverChildListDelegate(getScoreCards()),
-    ); */
     List<Widget> children = getScoreCards();
     children.insert(0, Container(child: ScoreWidget()));
     Widget centralWidget = ListView(
-        children: children); //[ScoreWidget(),Column(children: children,)]);
+        children: children);
     return centralWidget;
   }
 }

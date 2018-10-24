@@ -29,7 +29,6 @@ class _ScoreWidgetState extends State<ScoreWidget>
         });
       });
     animation.forward();
-    //Tween<double>(begin: 0.0, end: dispScore);
   }
 
   @override

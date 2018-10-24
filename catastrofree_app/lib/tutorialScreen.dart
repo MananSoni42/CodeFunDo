@@ -62,27 +62,6 @@ class _TutorialState extends State<Tutorial> {
               LinearProgressIndicator(value: tutorialStage/(totalStages-1),),
             ],
           ),
-          // floatingActionButton: FloatingActionButton(
-          //   child: Text("LOGIN"),
-          //   onPressed: () {
-          //     signIn() async {
-          //       bool status = await signInWithGoogle();
-          //       setState(() {
-          //         loggedIn = status;
-          //       });
-          //     }
-          //     signIn();
-          //     if (loggedIn) {
-          //       setState(() {
-          //         widget.callback(loggedIn);
-          //       });
-          //     } else {
-          //       setState(() {
-          //         tutorialStage = 1;
-          //       });
-          //     }
-          //   },
-          // ),
           floatingActionButton: 
           ListTile(
             leading: FloatingActionButton(
