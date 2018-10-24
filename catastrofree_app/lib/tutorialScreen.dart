@@ -22,9 +22,6 @@ class _TutorialState extends State<Tutorial> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                LinearProgressIndicator(
-                  value: tutorialStage / (totalStages - 1),
-                ),
                 CircleAvatar(
                   child: Image(image: AssetImage("assets/images/logo.png")),
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -47,8 +44,8 @@ class _TutorialState extends State<Tutorial> {
               ],
             ),
             floatingActionButton: ListTile(
-              trailing: FloatingActionButton(
-                shape: BeveledRectangleBorder(),
+              trailing: OutlineButton(
+                shape: RoundedRectangleBorder(),
                 child: Text("NEXT"),
                 onPressed: () {
                   setState(() {
@@ -62,15 +59,9 @@ class _TutorialState extends State<Tutorial> {
           return MyAppHome();
         }
         return Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              LinearProgressIndicator(value: tutorialStage/(totalStages-1),),
-            ],
-          ),
-          floatingActionButton: 
-          ListTile(
-            leading: FloatingActionButton(
+            floatingActionButton: ListTile(
+          leading: OutlineButton(
+            shape: RoundedRectangleBorder(),
             child: Text("BACK"),
             onPressed: () {
               setState(() {
@@ -78,35 +69,54 @@ class _TutorialState extends State<Tutorial> {
               });
             },
           ),
-            trailing:FloatingActionButton(
-            child: Text("LOGIN"),
-            onPressed: () {
-              signIn() async {
-                bool status = await signInWithGoogle();
-                setState(() {
-                  loggedIn = status;
-                });
-              }
-              signIn();
-              if (loggedIn) {
-                setState(() {
-                  widget.callback(loggedIn);
-                });
-              } else {
-                setState(() {
-                  tutorialStage = 1;
-                });
-              }
-            },
-          ),
-             /* FloatingActionButton(
-            child: Text("NEXT"),
+          trailing: OutlineButton(
+            child: Text("  NEXT  "),
+            shape: RoundedRectangleBorder(),
             onPressed: () {
               setState(() {
                 tutorialStage++;
               });
             },
-          ), */
+          ),
+        ));
+      case 2:
+        if (loggedIn) {
+          return MyAppHome();
+        }
+        return Scaffold(
+            floatingActionButton: ListTile(
+              leading: OutlineButton(
+                shape: RoundedRectangleBorder(),
+                child: Text("BACK"),
+                onPressed: () {
+                  setState(() {
+                    tutorialStage--;
+                  });
+                },
+              ),
+              trailing: OutlineButton(
+                child: Text("LOGIN"),
+                shape: RoundedRectangleBorder(),
+                onPressed: () {
+                  signIn() async {
+                    bool status = await signInWithGoogle();
+                    setState(() {
+                      loggedIn = status;
+                    });
+                  }
+
+                  signIn();
+                  if (loggedIn) {
+                    setState(() {
+                      widget.callback(loggedIn);
+                    });
+                  } else {
+                    setState(() {
+                      tutorialStage = 1;
+                    });
+                  }
+                },
+              ),
             ));
       default:
         tutorialStage = 1;
