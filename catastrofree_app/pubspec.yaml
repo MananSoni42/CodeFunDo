@@ -48,6 +48,7 @@ flutter:
 
   assets:
     - assets/images/disasterPic.jpeg
+    - assets/images/logo.png
     - assets/images/azure.png
     - assets/images/earthquake_symbol.jpg
     - assets/images/flood_symbol.png
