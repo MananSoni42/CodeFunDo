@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'expandingCards.dart';
 
+
+
 class DonateWidget extends StatelessWidget {
   final String sampleJsonString = """
   [{"affected": 400,
@@ -27,12 +29,6 @@ class DonateWidget extends StatelessWidget {
     String date = map['month'].toString() + "/" + map['year'].toString();
     Widget widget1 = Column(
       children: <Widget>[
-        /* Container(
-          child: Text(
-            map['place'],
-            
-            textAlign: TextAlign.left,),
-          padding: EdgeInsets.all(10.0)), */
         ListTile(
             leading: Icon(Icons.assessment),
             title: Text(

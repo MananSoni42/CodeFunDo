@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "326508055362-3hnfgrsfpnnd9fpkcvqh71hvosujodts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edge.catastrofree",
+            "certificate_hash": "2a3f02231c2be642b37974a1b2e37f1a2abbec66"
+          }
+        },
+        {
           "client_id": "326508055362-ap4jnpu5us93ldc576qmst7bppfdt9pe.apps.googleusercontent.com",
           "client_type": 3
         }

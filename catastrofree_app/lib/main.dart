@@ -6,7 +6,6 @@ import 'map_screen.dart';
 import 'aboutUs.dart';
 import 'disaster_tips.dart';
 import 'colors.dart';
-import 'auth.dart';
 import 'dart:async';
 import 'auth_handler.dart';
 import 'messaging_test.dart';

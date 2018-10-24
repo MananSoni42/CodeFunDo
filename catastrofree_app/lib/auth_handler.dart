@@ -51,7 +51,7 @@ class _StdUserAccountDrawerHeaderState extends State <StdUserAccountDrawerHeader
               currentAccountPicture: accountPic,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage('https://img00.deviantart.net/1eb7/i/2015/202/a/2/low_poly_landscape_by_gmcanimations-d92754l.png'),
+                  image: NetworkImage('https://t4.ftcdn.net/jpg/01/88/85/07/240_F_188850771_lWtSgpYaLn2PC2h8ZVhtqjVjlgp2U0M5.jpg'),
                 )
               ),
               onDetailsPressed: () => signInDialog(context));

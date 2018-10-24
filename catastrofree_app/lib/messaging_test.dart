@@ -7,7 +7,6 @@ import 'dart:io';
 
 Future<Null> sendRequest(FirebaseMessaging _firebaseMessaging) async{  
   print("Attempting to message");
-  
   String token = await _firebaseMessaging.getToken().timeout(Duration(seconds: 5)).catchError((err){
     print("Error getting token");
     print(err);

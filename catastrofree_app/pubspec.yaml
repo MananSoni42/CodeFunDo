@@ -24,6 +24,8 @@ dependencies:
   google_sign_in: ^3.2.1
   # flutter_billing: ^0.2.5
   firebase_messaging: ^2.0.2
+  map_view: ^0.0.14
+  url_launcher: ^4.0.1
 
 
 dev_dependencies:
@@ -42,6 +44,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/images/disasterPic.jpeg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
