@@ -6,6 +6,7 @@ import 'map_screen.dart';
 import 'aboutUs.dart';
 import 'disaster_tips.dart';
 import 'colors.dart';
+import 'auth.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -72,14 +73,13 @@ class _MyAppHomeState extends State<MyAppHome> {
             ),
             ScoreWidget(),
           ],
-        );
+          );
       case 1:
-        return DonateWidget();
+      return DonateWidget();
       case 2:
-        return null;
-      default:
-        print("Error");
-        return Text("Out of bounds widget!");
+      return SignInWidget();
+      default: print("Error");
+      return Text("Out of bounds widget!");
     }
   }
 
