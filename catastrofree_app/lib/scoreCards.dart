@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'scoreWidget.dart';
 
-class ScoreWidget extends StatelessWidget {
+class ScoreCardsWidget extends StatelessWidget {
   List<Widget> getScoreCards() {
     List<Widget> cards = new List();
     var cardsLength = 3;
@@ -33,7 +34,10 @@ class ScoreWidget extends StatelessWidget {
     /* Widget centralWidget = SliverList(
       delegate: SliverChildListDelegate(getScoreCards()),
     ); */
-    Widget centralWidget = ListView(children: getScoreCards());
+    List<Widget> children = getScoreCards();
+    children.insert(0, Container(child: ScoreWidget()));
+    Widget centralWidget = ListView(
+        children: children); //[ScoreWidget(),Column(children: children,)]);
     return centralWidget;
   }
 }

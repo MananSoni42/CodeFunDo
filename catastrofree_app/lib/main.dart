@@ -15,31 +15,35 @@ final ThemeData _kShrineTheme = _buildShrineTheme();
 
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
-    return base.copyWith(
-      accentColor: secondaryMain,
-      primaryColor: primaryMain,
-      cardColor: Color(0xFFBDBDBD),
-      scaffoldBackgroundColor: Color(0xFFEEEEEE),
-      buttonColor: secondaryDark,
-      textSelectionColor: Colors.lightBlue,
-    );
+  return base.copyWith(
+    accentColor: secondaryMain,
+    primaryColor: primaryMain,
+    cardColor: Color(0xFFEEEEEE),
+    scaffoldBackgroundColor: Color(0xFFEEEEEE),
+    buttonColor: secondaryDark,
+    backgroundColor: Color(0xFFEEEEEE),
+    textSelectionColor: Colors.lightBlue,
+  );
 }
 
 void main() {
   runApp(MaterialApp(
-    title: 'Catastrofree',
-    debugShowCheckedModeBanner: false,
-    home: MyAppHome(),
-    theme: _kShrineTheme
-  ));
+      title: 'Catastrofree',
+      debugShowCheckedModeBanner: false,
+      home: MyAppHome(),
+      theme: _kShrineTheme));
 }
 
 class MyAppHome extends StatefulWidget {
   final drawerItems = [
-    DrawerItem("Statistics", Icons.developer_board, false, null),
-    DrawerItem("Donate to tragedies", Icons.monetization_on, true, Text("Donate")),
+    DrawerItem("Statistics", Icons.developer_board, true, Text("Score")),
+    DrawerItem(
+        "Donate to tragedies", Icons.monetization_on, true, Text("Donate")),
     DrawerItem("Safe Spots", Icons.directions, true, Text("Safe Spots")),
-    DrawerItem("Messaging test", Icons.payment, true, Text("Messaging")),
+    DrawerItem("Map", Icons.location_on, false, null),
+    DrawerItem("Disaster Tips", Icons.info, false, null),
+    DrawerItem("About", Icons.help, true, Text("About us")),
+    DrawerItem("Account Settings", Icons.account_circle, false, null),
   ];
   @override
   State<StatefulWidget> createState() {
@@ -69,7 +73,8 @@ class _MyAppHomeState extends State<MyAppHome> {
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return CustomScrollView(
+        return ScoreCardsWidget();
+      /* CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               expandedHeight: 256.0,
@@ -87,18 +92,42 @@ class _MyAppHomeState extends State<MyAppHome> {
           ],
           );
       case 1:
-      return DonateWidget();
+        return DonateWidget();
       case 2:
-      return null;
+        return null;
       case 3:
-      return MapWidget();
+        return MapWidget();
       case 4:
-      return TipsList();
+        return TipsList();
       case 5:
-      return AboutUsWidget();
-      default: print("Error");
-      return Text("Out of bounds widget!");
+        return AboutUsWidget();
+      case 6:
+        logout();
+        return selectedDrawerIndex = 1;
+      default:
+        print("Error");
+        return Text("Out of bounds widget!");
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this._firebaseMessaging = FirebaseMessaging();
+    _firebaseMessaging.requestNotificationPermissions();
+    _firebaseMessaging.configure();
+    Future<Null> genToken() async {
+      this.myToken = await _firebaseMessaging
+          .getToken()
+          .timeout(Duration(seconds: 30))
+          .catchError((err) {
+        print("ERROR GENERATING TOKEN");
+        print(err.toString());
+      });
+      print(myToken);
+    }
+
+    genToken();
   }
 
   @override
@@ -112,31 +141,21 @@ class _MyAppHomeState extends State<MyAppHome> {
         selected: i == selectedDrawerIndex,
         onTap: () => selectedDrawerIndex = i,
       ));
-    } 
-    drawerOptions.insert(4,Divider());
+    }
+    drawerOptions.insert(4, Divider());
     return StdScaffold(
       showAppBar: widget.drawerItems[_selectedDrawerIndex].appBarEnabled,
       title: widget.drawerItems[_selectedDrawerIndex].appBarTitle,
       body: _getDrawerItemWidget(_selectedDrawerIndex),
       drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            StdUserAccountDrawerHeader(),
-            DrawerHeader(
-              child: Text(
-                "Score : 1000",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ),
-            Column(
-              children: drawerOptions,
-            ),
-          ],
-        )
-      ),
+          child: ListView(
+        children: <Widget>[
+          StdUserAccountDrawerHeader(),
+          Column(
+            children: drawerOptions,
+          ),
+        ],
+      )),
     );
   }
 }
