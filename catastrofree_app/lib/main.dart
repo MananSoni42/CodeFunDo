@@ -9,7 +9,6 @@ import 'colors.dart';
 import 'auth.dart';
 import 'dart:async';
 import 'auth_handler.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -87,7 +86,7 @@ class _MyAppHomeState extends State<MyAppHome> {
       case 1:
       return DonateWidget();
       case 2:
-      return SignInWidget();
+      return null;
       default: print("Error");
       return Text("Out of bounds widget!");
     }
