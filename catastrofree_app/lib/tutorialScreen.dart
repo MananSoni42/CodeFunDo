@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'auth_handler.dart';
+import 'main.dart';
 
 class Tutorial extends StatefulWidget {
   @override
@@ -17,44 +18,49 @@ class _TutorialState extends State<Tutorial> {
     switch (tutorialStage) {
       case 0:
         return Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              LinearProgressIndicator(value: tutorialStage/(totalStages-1),),
-              CircleAvatar(
-                child: Image(image: AssetImage("assets/images/logo.png")),
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                radius: 80.0,
-              ),
-              Container(
-                child: Center(
-                  child: Text(
-                    "Catastrofree",
-                    style: TextStyle(fontSize: 30.0),
-                  ),
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                LinearProgressIndicator(
+                  value: tutorialStage / (totalStages - 1),
                 ),
-                padding: EdgeInsets.all(15.0),
+                CircleAvatar(
+                  child: Image(image: AssetImage("assets/images/logo.png")),
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  radius: 80.0,
+                ),
+                Container(
+                  child: Center(
+                    child: Text(
+                      "Catastrofree",
+                      style: TextStyle(fontSize: 30.0),
+                    ),
+                  ),
+                  padding: EdgeInsets.all(15.0),
+                ),
+                Center(
+                    child: Text(
+                  "Made for codefundo++ with \u2764",
+                  style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+                )),
+              ],
+            ),
+            floatingActionButton: ListTile(
+              trailing: FloatingActionButton(
+                shape: BeveledRectangleBorder(),
+                child: Text("NEXT"),
+                onPressed: () {
+                  setState(() {
+                    tutorialStage++;
+                  });
+                },
               ),
-              Center(
-                  child: Text(
-                "Made for codefundo++ with \u2764",
-                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
-              )),
-            ],
-          ),
-          floatingActionButton: 
-          ListTile(
-            trailing: FloatingActionButton(
-            child: Text("NEXT"),
-            onPressed: () {
-              setState(() {
-                tutorialStage++;
-              });
-            },
-          ),
-        ));
+            ));
       case 1:
+        if (loggedIn) {
+          return MyAppHome();
+        }
         return Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -101,11 +107,13 @@ class _TutorialState extends State<Tutorial> {
               });
             },
           ), */
-        ));
+            ));
       default:
-        return null;
+        tutorialStage = 1;
+        return getScreen();
     }
   }
+
   int tutorialStage = 0;
   final totalStages = 3;
   @override

@@ -47,17 +47,24 @@ class _StdUserAccountDrawerHeaderState extends State <StdUserAccountDrawerHeader
 
 Future <bool> signInWithGoogle() async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignInAccount googleUser = await GoogleSignIn(scopes: [
+   GoogleSignInAccount googleUser;
+  try{
+    googleUser = await GoogleSignIn(scopes: [
     "email",
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email',
   ]).signIn();
+  }
+  catch(err){
+    print(err);
+    return false;
+  }
+  try{
   final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
   final FirebaseUser user = await _auth.signInWithGoogle(
     accessToken: googleAuth.accessToken,
     idToken: googleAuth.idToken,
   );
-  try{
   assert(user.email != null);
   assert(user.displayName != null);
   assert(!user.isAnonymous);
@@ -75,9 +82,12 @@ Future <Null> signInWithFacebook(){
   return null;
 }
 
-Future <Null> logout() async{
+Future <Null> logout(Function callback) async{
   await FirebaseAuth.instance.signOut();
+  callback(false);
 }
+
+
 Future <Null> signInDialog(BuildContext context) async {
   showDialog<FirebaseUser>(
     context: context,
@@ -101,7 +111,7 @@ Future <Null> signInDialog(BuildContext context) async {
           ),
           SimpleDialogOption(
             child: const Text("Logout"),
-            onPressed: logout,),
+            onPressed: null)//logout,),
         ],
       );
     }

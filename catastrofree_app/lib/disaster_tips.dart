@@ -26,8 +26,8 @@ class _TipsListState extends State<TipsList> {
             softWrap: true),
         Image(
           image: AssetImage('assets/images/earthquake_symbol.jpg'),
-          width: 10.0,
-          height: 10.0,
+          width: 50.0,
+          height: 50.0,
         )),
     Tip(
         false,
@@ -36,9 +36,9 @@ class _TipsListState extends State<TipsList> {
             " • If you live near an active volcano, keep goggles and a mask in an emergency kit, along with a flashlight and a working, battery-operated radio.\n • Evacuate only as recommended by authorities to stay clear of lava, mud flows, and flying rocks and debris.\n • Avoid river areas and low-lying regions.\n • Be aware that ash may put excess weight on your roof and need to be swept away. Wear protection during cleanups.",
             softWrap: true),
         Image(
-            image: AssetImage('assets/images/volcano_symbol.jpg'),
-            width: 10.0,
-            height: 10.0)),
+            image: AssetImage('assets/images/volcano_symbol.png'),
+            width: 50.0,
+            height: 50.0)),
     Tip(
         false,
         'Stuck in a Cyclone ?',
@@ -47,8 +47,8 @@ class _TipsListState extends State<TipsList> {
             softWrap: true),
         Image(
           image: AssetImage('assets/images/storm_symbol.jpg'),
-          height: 10.0,
-          width: 10.0,
+          height: 50.0,
+          width: 50.0,
         )),
     Tip(
         false,
@@ -57,9 +57,9 @@ class _TipsListState extends State<TipsList> {
             " • Protect windows with plywood boards, or storm shutters\n • Have several days supply of food and water for everyone\n • Remain indoors when the eye moves over your area because the storm will resume shortly\n • Monitor Weather and Civil Service Bulletins on either regular or NOAA radio\n",
             softWrap: true),
         Image(
-          image: AssetImage('assets/images/tsunami_symbol.jpg'),
-          height: 10.0,
-          width: 10.0,
+          image: AssetImage('assets/images/tsunami_symbol.png'),
+          height: 50.0,
+          width: 50.0,
         )),
     Tip(
         false,
@@ -68,9 +68,9 @@ class _TipsListState extends State<TipsList> {
             " • Seal walls in basements with waterproofing compounds to avoid seepage\n • Be prepared! Pack a bag with important items in case you need to evacuate\n • If there is any possibility of a flash flood, move immediately to higher ground\n • Turn off utilities at the main switches or valves. Disconnect electrical appliances",
             softWrap: true),
         Image(
-          image: AssetImage('assets/images/flood_symbol.jpg'),
-          height: 10.0,
-          width: 10.0,
+          image: AssetImage('assets/images/flood_symbol.png'),
+          height: 50.0,
+          width: 50.0,
         )),
   ];
   @override

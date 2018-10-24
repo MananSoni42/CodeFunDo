@@ -50,7 +50,7 @@ class MyAppHome extends StatefulWidget {
 
 class _MyAppHomeState extends State<MyAppHome> {
   FirebaseMessaging _firebaseMessaging;
-  bool loggedIn;
+  static bool loggedIn = false;
   String myToken;
   int _selectedDrawerIndex = 0;
   int get selectedDrawerIndex => _selectedDrawerIndex;
@@ -75,13 +75,13 @@ class _MyAppHomeState extends State<MyAppHome> {
         return AboutUsWidget();
       case 5:
         signOut() async {
-          logout();
+          logout(callback);
           setState(() {
             loggedIn = false;
           });
         }
         signOut();
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       default:
         print("Error");
         return Text("Out of bounds widget!");
@@ -90,9 +90,13 @@ class _MyAppHomeState extends State<MyAppHome> {
   
 
   callback(newLoggedIn) {
+    try{
     setState(() {
       loggedIn = newLoggedIn;
     });
+    }catch(e){
+      print(e);
+    } 
   }
 
   @override
@@ -122,9 +126,10 @@ class _MyAppHomeState extends State<MyAppHome> {
       loggedIn = currentUser != null;
     });
   }
-
+  Tutorial tutorial;
   @override
   Widget build(BuildContext context) {
+    tutorial = Tutorial(callback);
     List<Widget> drawerOptions = <Widget>[];
     for (var i = 0; i < widget.drawerItems.length; i++) {
       var dItem = widget.drawerItems[i];
@@ -152,7 +157,7 @@ class _MyAppHomeState extends State<MyAppHome> {
         )),
       );
     } else {
-      return Tutorial(callback);
+      return tutorial;
     }
   }
 }

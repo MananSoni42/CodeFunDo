@@ -59,7 +59,6 @@ class _ScoreWidgetState extends State<ScoreWidget>
                 "Your Disaster Score",
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
-
               ),
             ),
             Container(
