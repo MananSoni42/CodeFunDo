@@ -6,6 +6,7 @@ class TipsList extends StatefulWidget {
     return _TipsListState();
   }
 }
+
 class Tip {
   bool isExpanded;
   final String header;
@@ -14,78 +15,107 @@ class Tip {
   Tip(this.isExpanded, this.header, this.body, this.icon);
 }
 
-class _TipsListState extends State <TipsList>{
-  final double _appBarHeight = 256.0;
-  List <Tip> tips = [
-    Tip(false, 'Tip#1', Text("Sample Text which is very very very long and wraps (hopefully)",softWrap: true), Icon(Icons.help)),
-    Tip(false, 'Tip#1', Text("Sample Text which is very very very long and wraps (hopefully)",softWrap: true), Icon(Icons.help)),
-    Tip(false, 'Tip#1', Text("Sample Text which is very very very long and wraps (hopefully)",softWrap: true), Icon(Icons.help)),
-    Tip(false, 'Tip#1', Text("Sample Text which is very very very long and wraps (hopefully)",softWrap: true), Icon(Icons.help)),
-    
+class _TipsListState extends State<TipsList> {
+  final double _appBarHeight = 175.0;
+  List<Tip> tips = [
+    Tip(
+        false,
+        'Stuck in an Earthquake ?',
+        Text(" • Drop down; take cover under a desk or table and hold on.\n • If you are outdoors, find a clear spot away from buildings, trees, and power lines. Drop to the ground.\n • If you are in bed, hold on and stay there, protecting your head with a pillow.\n • If you are in a car, slow down and drive to a clear place. Stay in the car until the shaking stops.",
+            softWrap: true),
+        Icon(Icons.help)),
+    Tip(
+        false,
+        'Stuck in a Volcano ?',
+        Text(" • If you live near an active volcano, keep goggles and a mask in an emergency kit, along with a flashlight and a working, battery-operated radio.\n • Evacuate only as recommended by authorities to stay clear of lava, mud flows, and flying rocks and debris.\n • Avoid river areas and low-lying regions.\n • Be aware that ash may put excess weight on your roof and need to be swept away. Wear protection during cleanups.",
+            softWrap: true),
+        Icon(Icons.help)),
+    Tip(
+        false,
+        'Stuck in a Cyclone ?',
+        Text(" • In case of a storm surge/tide warning, or other flooding, know your nearest safe high ground and the safest access route to it.\n • Put wooden or plastic outdoor furniture in your pool or inside with other loose items.\n • Close shutters or board-up or heavily tape all windows. Draw curtains and lock doors.\n • Wear strong shoes (not thongs) and tough clothing for protection.\n • Lock doors; turn off power, gas, and water; take your evacuation and emergency kits",
+            softWrap: true),
+        Icon(Icons.help)),
+    Tip(
+        false,
+        'Stuck in a Tsunami ?',
+        Text(" • Protect windows with plywood boards, or storm shutters\n • Have several days supply of food and water for everyone\n • Remain indoors when the eye moves over your area because the storm will resume shortly\n • Monitor Weather and Civil Service Bulletins on either regular or NOAA radio\n",
+            softWrap: true),
+        Icon(AssetImage('assets/images/tsunami_symbol.jpg'))),
+    Tip(
+        false,
+        'Stuck in a Flood ?',
+        Text(" • Seal walls in basements with waterproofing compounds to avoid seepage\n • Be prepared! Pack a bag with important items in case you need to evacuate\n • If there is any possibility of a flash flood, move immediately to higher ground\n • Turn off utilities at the main switches or valves. Disconnect electrical appliances",
+            softWrap: true),
+        Icon(AssetImage('assets/images/flood_symbol.jpg'))),
   ];
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              expandedHeight: _appBarHeight,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text("Disaster tips", softWrap: true,),
-                collapseMode: CollapseMode.parallax,
-                background: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    Image(
-                      image:AssetImage("assets/images/disasterPic.jpeg"),
-                      fit: BoxFit.cover,
-                      height: _appBarHeight,
-                    ),
-                    DecoratedBox(
-                      decoration:BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, -1.0),
-                          end:Alignment(0.0, -0.4),
-                          colors: <Color>[Color(0x60000000), Color(0x10000000)],
-                        )
-                      ),
-                    )
-                  ]
+      slivers: <Widget>[
+        SliverAppBar(
+          expandedHeight: _appBarHeight,
+          pinned: true,
+          flexibleSpace: FlexibleSpaceBar(
+              //title: Text("Disaster tips", softWrap: true,),
+              collapseMode: CollapseMode.parallax,
+              background: Stack(fit: StackFit.expand, children: <Widget>[
+                Image(
+                  image: AssetImage("assets/images/disasterPic.jpeg"),
+                  fit: BoxFit.cover,
+                  height: _appBarHeight,
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment(0.0, -1.0),
+                    end: Alignment(0.0, -0.4),
+                    colors: <Color>[Color(0x60000000), Color(0x10000000)],
+                  )),
                 )
-              ),
-            ),
-            SliverList(delegate: SliverChildListDelegate(<Widget>[
-              Padding(
-          padding: EdgeInsets.all(10.0),
-          child: ExpansionPanelList(
-            expansionCallback: (int index, bool isExpanded){
-              setState((){
-                tips[index].isExpanded = !tips[index].isExpanded;
-              });
-            },
-            children: tips.map((Tip tip){
-              return ExpansionPanel(
-                headerBuilder: (BuildContext context, bool isExpanded){
-                  return ListTile(
-                    leading: tip.icon,
-                    title: new Text(
-                      tip.header,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600
-                      ),
-                    )
-                  );
-                },
-                isExpanded: tip.isExpanded,
-                body: Container(child: tip.body,padding: EdgeInsets.all(10.0),)
-              );
-            }).toList(),
-          )
-        )
-      ],
-      )
-      )
+              ])),
+        ),
+        SliverList(
+            delegate: SliverChildListDelegate(
+          <Widget>[
+            Padding(
+                padding: EdgeInsets.all(10.0),
+                child: ExpansionPanelList(
+                  expansionCallback: (int index, bool isExpanded) {
+                    setState(() {
+                      tips[index].isExpanded = !tips[index].isExpanded;
+                    });
+                  },
+                  animationDuration: Duration(milliseconds: 100),
+                  children: tips.map((Tip tip) {
+                    return ExpansionPanel(
+                        headerBuilder: (BuildContext context, bool isExpanded) {
+                          return Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: .0, vertical: 10.0),
+                              child: ListTile(
+                                  onTap: () {setState(() {
+                                    tip.isExpanded = !tip.isExpanded;
+                                  });
+                                  },
+                                  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
+                                  leading: tip.icon,
+                                  title: new Text(
+                                    tip.header,
+                                    textAlign: TextAlign.left,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600),
+                                  )));
+                        },
+                        isExpanded: tip.isExpanded,
+                        body: Container(
+                          child: tip.body,
+                          padding: EdgeInsets.all(10.0),
+                        ));
+                  }).toList(),
+                ))
+          ],
+        ))
       ],
     );
     /* ListView(
@@ -156,7 +186,7 @@ class _TipsListState extends State <TipsList>{
 //           ),
 //         ]
 //       ),
-//     ) 
+//     )
 //   ]; */
 // }
 
