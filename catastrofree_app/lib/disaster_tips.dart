@@ -22,10 +22,10 @@ class _TipsListState extends State<TipsList> {
         false,
         'Stuck in an Earthquake ?',
         Text(
-            " • Drop down; take cover under a desk or table and hold on.\n • If you are outdoors, find a clear spot away from buildings, trees, and power lines. Drop to the ground.\n • If you are in bed, hold on and stay there, protecting your head with a pillow.\n • If you are in a car, slow down and drive to a clear place. Stay in the car until the shaking stops.",
-            softWrap: true),
+            " • Take cover under a desk or table\n • If outdoors, get away from buildings, trees, and power lines and drop to the ground\n • If you are in bed, hold on and stay there, protecting your head with a pillow.\n • If you are in a car, slow down and drive to a clear place",
+            softWrap: true, style: TextStyle(fontSize: 15.0)),
         Image(
-          image: AssetImage('assets/images/earthquake_symbol.jpg'),
+          image: AssetImage('assets/images/earthquake_symbol.png'),
           width: 50.0,
           height: 50.0,
         )),
@@ -34,7 +34,7 @@ class _TipsListState extends State<TipsList> {
         'Stuck in a Volcano ?',
         Text(
             " • If you live near an active volcano, keep goggles and a mask in an emergency kit, along with a flashlight and a working, battery-operated radio.\n • Evacuate only as recommended by authorities to stay clear of lava, mud flows, and flying rocks and debris.\n • Avoid river areas and low-lying regions.\n • Be aware that ash may put excess weight on your roof and need to be swept away. Wear protection during cleanups.",
-            softWrap: true),
+            softWrap: true, style: TextStyle(fontSize: 15.0)),
         Image(
             image: AssetImage('assets/images/volcano_symbol.png'),
             width: 50.0,
@@ -44,9 +44,9 @@ class _TipsListState extends State<TipsList> {
         'Stuck in a Cyclone ?',
         Text(
             " • In case of a storm surge/tide warning, or other flooding, know your nearest safe high ground and the safest access route to it.\n • Put wooden or plastic outdoor furniture in your pool or inside with other loose items.\n • Close shutters or board-up or heavily tape all windows. Draw curtains and lock doors.\n • Wear strong shoes (not thongs) and tough clothing for protection.\n • Lock doors; turn off power, gas, and water; take your evacuation and emergency kits",
-            softWrap: true),
+            softWrap: true, style: TextStyle(fontSize: 15.0)),
         Image(
-          image: AssetImage('assets/images/storm_symbol.jpg'),
+          image: AssetImage('assets/images/storm_symbol.png'),
           height: 50.0,
           width: 50.0,
         )),
@@ -55,7 +55,7 @@ class _TipsListState extends State<TipsList> {
         'Stuck in a Tsunami ?',
         Text(
             " • Protect windows with plywood boards, or storm shutters\n • Have several days supply of food and water for everyone\n • Remain indoors when the eye moves over your area because the storm will resume shortly\n • Monitor Weather and Civil Service Bulletins on either regular or NOAA radio\n",
-            softWrap: true),
+            softWrap: true, style: TextStyle(fontSize: 15.0)),
         Image(
           image: AssetImage('assets/images/tsunami_symbol.png'),
           height: 50.0,
@@ -66,7 +66,7 @@ class _TipsListState extends State<TipsList> {
         'Stuck in a Flood ?',
         Text(
             " • Seal walls in basements with waterproofing compounds to avoid seepage\n • Be prepared! Pack a bag with important items in case you need to evacuate\n • If there is any possibility of a flash flood, move immediately to higher ground\n • Turn off utilities at the main switches or valves. Disconnect electrical appliances",
-            softWrap: true),
+            softWrap: true, style: TextStyle(fontSize: 15.0)),
         Image(
           image: AssetImage('assets/images/flood_symbol.png'),
           height: 50.0,
@@ -81,7 +81,6 @@ class _TipsListState extends State<TipsList> {
           expandedHeight: _appBarHeight,
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(
-              //title: Text("Disaster tips", softWrap: true,),
               collapseMode: CollapseMode.parallax,
               background: Stack(fit: StackFit.expand, children: <Widget>[
                 Image(
@@ -116,7 +115,7 @@ class _TipsListState extends State<TipsList> {
                         headerBuilder: (BuildContext context, bool isExpanded) {
                           return Container(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: .0, vertical: 10.0),
+                                  horizontal: 0.0, vertical: 15.0),
                               child: ListTile(
                                   onTap: () {
                                     setState(() {
@@ -124,7 +123,7 @@ class _TipsListState extends State<TipsList> {
                                     });
                                   },
                                   contentPadding: EdgeInsets.symmetric(
-                                      vertical: 10.0, horizontal: 0.0),
+                                      vertical: 0.0, horizontal: 20.0),
                                   leading: tip.icon,
                                   title: new Text(
                                     tip.header,

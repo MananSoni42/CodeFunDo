@@ -50,10 +50,11 @@ flutter:
     - assets/images/disasterPic.jpeg
     - assets/images/logo.png
     - assets/images/azure.png
-    - assets/images/earthquake_symbol.jpg
+    - assets/images/earthquake_symbol.png
     - assets/images/flood_symbol.png
-    - assets/images/storm_symbol.jpg
+    - assets/images/storm_symbol.png
     - assets/images/tsunami_symbol.png
+    - assets/images/volcano_symbol.png
     - assets/images/disaster_tips_banner.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
