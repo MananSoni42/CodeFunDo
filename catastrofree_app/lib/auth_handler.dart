@@ -1,6 +1,5 @@
 //import 'package:firebase_messaging/firebase_messaging.dart';
 import 'dart:async';
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -25,10 +24,10 @@ class StdUserAccountDrawerHeader extends StatefulWidget {
 }
 class _StdUserAccountDrawerHeaderState extends State <StdUserAccountDrawerHeader> {
   Text accountName = Text(
-    'Dummy Name',
+    'Disconnected',
     style: TextStyle(fontWeight: FontWeight.bold),
     );
-  Text accountEmail = Text("DummyEmail@DumDum.com");
+  Text accountEmail;//Text("placeholderEmail@email.com");
   Widget accountPic;
   Future <void> refresh () async{
     FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
@@ -58,7 +57,7 @@ class _StdUserAccountDrawerHeaderState extends State <StdUserAccountDrawerHeader
   }
 }
 
-Future <String> signInWithGoogle() async {
+Future <bool> signInWithGoogle() async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignInAccount googleUser = await GoogleSignIn(scopes: [
     "email",
@@ -70,13 +69,18 @@ Future <String> signInWithGoogle() async {
     accessToken: googleAuth.accessToken,
     idToken: googleAuth.idToken,
   );
+  try{
   assert(user.email != null);
   assert(user.displayName != null);
   assert(!user.isAnonymous);
   assert(await user.getIdToken() != null);
   final FirebaseUser currentUser = await _auth.currentUser();
   assert(user.uid == currentUser.uid);
-  return null;
+  }catch(e){
+    print(e);
+    return false;
+  }
+  return true;
 }
 
 Future <Null> signInWithFacebook(){

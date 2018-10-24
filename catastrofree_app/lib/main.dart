@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'scoreCards.dart';
 import 'standardScaffold.dart';
 import 'donateScreen.dart';
@@ -6,10 +7,7 @@ import 'map_screen.dart';
 import 'aboutUs.dart';
 import 'disaster_tips.dart';
 import 'colors.dart';
-import 'dart:async';
-import 'auth_handler.dart';
-import 'messaging_test.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'tutorialScreen.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -43,7 +41,7 @@ class MyAppHome extends StatefulWidget {
     DrawerItem("Map", Icons.location_on, false, null),
     DrawerItem("Disaster Tips", Icons.info, false, null),
     DrawerItem("About", Icons.help, true, Text("About us")),
-    DrawerItem("Account Settings", Icons.account_circle, false, null),
+    DrawerItem("Logout", Icons.account_circle, false, null),
   ];
   @override
   State<StatefulWidget> createState() {
@@ -52,15 +50,9 @@ class MyAppHome extends StatefulWidget {
 }
 
 class _MyAppHomeState extends State<MyAppHome> {
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-  UserAccountsDrawerHeader myUserAccountsDrawerHeader = UserAccountsDrawerHeader(
-    accountName: Text(
-      "Placeholder Text",
-      style: TextStyle(fontWeight: FontWeight.bold),
-    ),
-    accountEmail: null,
-  );
-
+  FirebaseMessaging _firebaseMessaging;
+  bool loggedIn;
+  String myToken;
   int _selectedDrawerIndex = 0;
   int get selectedDrawerIndex => _selectedDrawerIndex;
   set selectedDrawerIndex(int value) {
@@ -102,17 +94,31 @@ class _MyAppHomeState extends State<MyAppHome> {
       case 5:
         return AboutUsWidget();
       case 6:
-        logout();
-        return selectedDrawerIndex = 1;
+        signOut() async {
+          logout();
+          setState(() {
+            loggedIn = false;
+          });
+        }
+        signOut();
+        return CircularProgressIndicator();
       default:
         print("Error");
         return Text("Out of bounds widget!");
     }
   }
+  
+
+  callback(newLoggedIn) {
+    setState(() {
+      loggedIn = newLoggedIn;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    checkLoggedIn();
     this._firebaseMessaging = FirebaseMessaging();
     _firebaseMessaging.requestNotificationPermissions();
     _firebaseMessaging.configure();
@@ -130,6 +136,13 @@ class _MyAppHomeState extends State<MyAppHome> {
     genToken();
   }
 
+  Future<void> checkLoggedIn() async {
+    FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
+    setState(() {
+      loggedIn = currentUser != null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> drawerOptions = <Widget>[];
@@ -143,20 +156,24 @@ class _MyAppHomeState extends State<MyAppHome> {
       ));
     }
     drawerOptions.insert(4, Divider());
-    return StdScaffold(
-      showAppBar: widget.drawerItems[_selectedDrawerIndex].appBarEnabled,
-      title: widget.drawerItems[_selectedDrawerIndex].appBarTitle,
-      body: _getDrawerItemWidget(_selectedDrawerIndex),
-      drawer: Drawer(
-          child: ListView(
-        children: <Widget>[
-          StdUserAccountDrawerHeader(),
-          Column(
-            children: drawerOptions,
-          ),
-        ],
-      )),
-    );
+    if (loggedIn) {
+      return StdScaffold(
+        showAppBar: widget.drawerItems[_selectedDrawerIndex].appBarEnabled,
+        title: widget.drawerItems[_selectedDrawerIndex].appBarTitle,
+        body: _getDrawerItemWidget(_selectedDrawerIndex),
+        drawer: Drawer(
+            child: ListView(
+          children: <Widget>[
+            StdUserAccountDrawerHeader(),
+            Column(
+              children: drawerOptions,
+            ),
+          ],
+        )),
+      );
+    } else {
+      return Tutorial(callback);
+    }
   }
 }
 
