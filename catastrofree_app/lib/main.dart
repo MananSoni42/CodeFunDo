@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+import 'aboutUs.dart';
+import 'auth_handler.dart';
+import 'colors.dart';
+import 'disaster_tips.dart';
+import 'donateScreen.dart';
+import 'map_screen.dart';
 import 'scoreCards.dart';
 import 'standardScaffold.dart';
-import 'donateScreen.dart';
-import 'auth_handler.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'map_screen.dart';
-import 'aboutUs.dart';
-import 'disaster_tips.dart';
-import 'colors.dart';
 import 'tutorialScreen.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
