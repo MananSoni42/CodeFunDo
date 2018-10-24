@@ -91,7 +91,11 @@ class _MyAppHomeState extends State<MyAppHome> {
       case 2:
       return null;
       case 3:
-      return MessagingTestWidget(_firebaseMessaging);
+      return MapWidget();
+      case 4:
+      return TipsList();
+      case 5:
+      return AboutUsWidget();
       default: print("Error");
       return Text("Out of bounds widget!");
     }
@@ -109,6 +113,7 @@ class _MyAppHomeState extends State<MyAppHome> {
         onTap: () => selectedDrawerIndex = i,
       ));
     } 
+    drawerOptions.insert(4,Divider());
     return StdScaffold(
       showAppBar: widget.drawerItems[_selectedDrawerIndex].appBarEnabled,
       title: widget.drawerItems[_selectedDrawerIndex].appBarTitle,

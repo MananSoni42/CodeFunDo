@@ -19,7 +19,7 @@ class AboutUsWidget extends StatelessWidget{
             child: Column(
             children: [
               CircleAvatar(
-              backgroundImage: AssetImage("assets/images/disasterPic.jpeg"),
+              backgroundImage: AssetImage("assets/images/logo.png"),
               radius: 80.0,
               ),
               Container(child : Center(child: Text("Catastrofree",style: TextStyle(fontSize: 30.0),),),padding: EdgeInsets.all(15.0),),
