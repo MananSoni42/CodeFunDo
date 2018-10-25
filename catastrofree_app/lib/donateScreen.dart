@@ -116,7 +116,6 @@ class DonateWidget extends StatelessWidget {
   buildFromJson(sampleJsonString) {
     List<Column> cardList = [];
     List sampleJson = jsonDecode(sampleJsonString);
-    print("Still building");
     for (var i = 0; i < sampleJson.length; i++) {
       Map campaign = sampleJson[i];
       cardList.add(buildFromMap(campaign));
@@ -130,6 +129,7 @@ class DonateWidget extends StatelessWidget {
     if (map["is_enabled"]){
       donate = OutlineButton(
                 child: Text("DONATE"),
+                borderSide: BorderSide(width: .7, color: Colors.black38),
                 onPressed: () => _launchURL(map["pay_link"]),
               );
     }
