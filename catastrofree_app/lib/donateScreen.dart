@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import "package:url_launcher/url_launcher.dart";
 
 import 'dart:convert';
-import 'expandingCards.dart';
 
 class DonateWidget extends StatelessWidget {
   _launchURL(String url) async {
@@ -115,7 +114,7 @@ class DonateWidget extends StatelessWidget {
 """;
 
   buildFromJson(sampleJsonString) {
-    List<ExpandableCardWidget> cardList = [];
+    List<Column> cardList = [];
     List sampleJson = jsonDecode(sampleJsonString);
     print("Still building");
     for (var i = 0; i < sampleJson.length; i++) {
@@ -141,7 +140,7 @@ class DonateWidget extends StatelessWidget {
                 onPressed: null,
               );
     }
-    Widget widget1 = Column(
+    return Column(
       children: <Widget>[
         ListTile(
             leading: Icon(Icons.assessment),
@@ -163,18 +162,9 @@ class DonateWidget extends StatelessWidget {
             ],
           ),
         ),
+        Divider(),
       ],
     );
-
-    return ExpandableCardWidget(
-        body1: widget1,
-        body2: Container(
-          child: Text(
-            "Additional text could be added here like a short story on the disaster",
-            softWrap: true,
-          ),
-          alignment: Alignment.center,
-        ));
   }
 
   @override
