@@ -5,7 +5,7 @@ import 'scoreWidget.dart';
 class ScoreCardsWidget extends StatelessWidget {
   List<Widget> getScoreCards() {
     List<Widget> cards = new List();
-    var cardsLength = 3;
+    var cardsLength = 4;
     for (var i = 0; i < cardsLength; i++) {
       cards.add(new Card(
           child: Column(

@@ -56,32 +56,36 @@ class _ScoreWidgetState extends State<ScoreWidget>
           children: <Widget>[
             Center(
               child: Text(
-                "Your Disaster Score",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),
+                "YOUR SAFETY SCORE",
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w300),
                 textAlign: TextAlign.center,
               ),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(30.0),
               decoration: BoxDecoration(
                 color: circleColor,
                 shape: BoxShape.circle,
+                border: new Border.all(
+                  width: 0.5,
+                  color: Color(0xFFC41C00),
+                ),
               ),
               child: GestureDetector(
                 child: Text(
                   dispScore.toString().substring(0, 3),
                   style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 50.0,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 70.0,
                       color: textColor),
                 ),
                 onTap: updateScore,
               ),
             ),
-            Divider(),
           ],
         ),
+        margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
       ),
     );
   }
