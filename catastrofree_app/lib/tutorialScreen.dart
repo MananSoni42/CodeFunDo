@@ -113,20 +113,19 @@ class _TutorialState extends State<Tutorial> {
                     });
                   } else {
                     setState(() {
-                      tutorialStage = 1;
+                      tutorialStage = 2;
                     });
                   }
                 },
               ),
             ));
       default:
-        tutorialStage = 1;
+        tutorialStage = 2;
         return getScreen();
     }
   }
 
   int tutorialStage = 0;
-  final totalStages = 3;
   @override
   Widget build(BuildContext context) {
     return getScreen();
