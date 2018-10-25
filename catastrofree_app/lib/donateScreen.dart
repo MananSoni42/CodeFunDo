@@ -25,33 +25,6 @@ class DonateWidget extends StatelessWidget {
         "is_enabled": true
     },
     {
-        "place": "Gujarat, India",
-        "year": 2017,
-        "month": 6,
-        "type": "Flood",
-        "link": "https://en.wikipedia.org/wiki/2017_Gujarat_flood",
-        "affected": 224,
-        "is_enabled": false
-    },
-    {
-        "place": "Mumbai, India",
-        "year": 2017,
-        "month": 8,
-        "type": "Flood",
-        "link": "https://en.wikipedia.org/wiki/2017_Mumbai_flood",
-        "affected": 35,
-        "is_enabled": false
-    },
-    {
-        "place": "Puebela, Mexico",
-        "year": 2017,
-        "month": 9,
-        "type": "Earthquake",
-        "link": "https://en.wikipedia.org/wiki/2017_Puebla_earthquake",
-        "affected": 361,
-        "is_enabled": false
-    },
-    {
         "place": "Sulawesi, Indonesia",
         "year": 2018,
         "month": 9,
@@ -110,6 +83,33 @@ class DonateWidget extends StatelessWidget {
         "affected": 630,
         "pay_link": "http://p-y.tm/c-9CoQY",
         "is_enabled": true
+    },
+    {
+        "place": "Gujarat, India",
+        "year": 2017,
+        "month": 6,
+        "type": "Flood",
+        "link": "https://en.wikipedia.org/wiki/2017_Gujarat_flood",
+        "affected": 224,
+        "is_enabled": false
+    },
+    {
+        "place": "Mumbai, India",
+        "year": 2017,
+        "month": 8,
+        "type": "Flood",
+        "link": "https://en.wikipedia.org/wiki/2017_Mumbai_flood",
+        "affected": 35,
+        "is_enabled": false
+    },
+    {
+        "place": "Puebela, Mexico",
+        "year": 2017,
+        "month": 9,
+        "type": "Earthquake",
+        "link": "https://en.wikipedia.org/wiki/2017_Puebla_earthquake",
+        "affected": 361,
+        "is_enabled": false
     }]
 """;
 
