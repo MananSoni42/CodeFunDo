@@ -51,7 +51,7 @@ class _ScoreWidgetState extends State<ScoreWidget>
       elevation: 0.0,
       margin: EdgeInsets.all(5.0),
       child: Container(
-        padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 5.0),
+        padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 5.0),
         child: Column(
           children: <Widget>[
             Center(
@@ -62,7 +62,7 @@ class _ScoreWidgetState extends State<ScoreWidget>
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+              margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
               padding: EdgeInsets.all(30.0),
               decoration: BoxDecoration(
                 color: circleColor,
