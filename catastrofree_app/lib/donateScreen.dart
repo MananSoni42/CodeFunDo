@@ -165,25 +165,36 @@ class DonateWidget extends StatelessWidget {
             ),
             title: Row(
               children: [
-                Expanded(child: Text(map['place'], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold))),
+                Expanded(child: Text(map['place'], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, height: 1.4))),
                 Text(date, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500))
               ]
             ),
             subtitle: Row(
-                children: [Expanded(child: Text(map["type"], style: TextStyle(fontWeight: FontWeight.bold)))])),
-        ButtonTheme.bar(
-          child: ButtonBar(
-            children: <Widget>[
-              OutlineButton(
-                child: Text("READ MORE"),
-                borderSide: BorderSide(width: .7, color: Colors.black38),
-                onPressed: () => _launchURL(map["link"]),
-              ),
-              donate
-            ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(child: Text(map["type"], style: TextStyle(fontWeight: FontWeight.bold, height: 1.5) )),
+                new Container(
+                  margin: const EdgeInsets.only(top: 20.0),
+                  child : ButtonTheme.bar(
+                    child: ButtonBar(
+                      children: <Widget>[
+                        OutlineButton(
+                          child: Text("READ MORE"),
+                          borderSide: BorderSide(width: .7, color: Colors.black38),
+                          onPressed: () => _launchURL(map["link"]),
+                        ),
+                        donate,
+                      ],
+                    ),
+                  )
+                )
+              ]
+            )
           ),
-        ),
-        Divider(),
+
+        Divider(color: Colors.black38,),
+
       ],
     );
   }
