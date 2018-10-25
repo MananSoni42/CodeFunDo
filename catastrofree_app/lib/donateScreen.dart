@@ -159,12 +159,14 @@ class DonateWidget extends StatelessWidget {
       children: <Widget>[
         ListTile(
             leading: Icon(Icons.assessment),
-            title: Text(
-              map['place'],
-              style: TextStyle(fontWeight: FontWeight.bold),
+            title: Row(
+              children: [
+                Expanded(child: Text(map['place'], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold))),
+                Text(date, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500))
+              ]
             ),
             subtitle: Row(
-                children: [Expanded(child: Text(date)), Text(map["type"])])),
+                children: [Expanded(child: Text(map["type"], style: TextStyle(fontWeight: FontWeight.bold)))])),
         ButtonTheme.bar(
           child: ButtonBar(
             children: <Widget>[
@@ -185,7 +187,7 @@ class DonateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: buildFromJson(sampleJsonString),
+      children: [Container(child: Column(children: buildFromJson(sampleJsonString)), margin: EdgeInsets.all(5.0))],
     );
   }
 }
