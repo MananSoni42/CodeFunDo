@@ -37,11 +37,11 @@ void main() {
 
 class MyAppHome extends StatefulWidget {
   final drawerItems = [
-    DrawerItem("Statistics", Icons.developer_board, true, Text("Score")),
+    DrawerItem("Safety Score", Icons.developer_board, true, Text("Safety Score")),
     DrawerItem(
-        "Donate to tragedies", Icons.monetization_on, true, Text("Donate")),
-    DrawerItem("Safe Spots", Icons.directions, true, Text("Safe Spots")),
-    DrawerItem("Disaster Tips", Icons.info, false, null),
+        "Donate", Icons.monetization_on, true, Text("Donate for Relief Funds")),
+    DrawerItem("I AM UNSAFE !", Icons.directions, true, Text("Find Safe Spots Nearby")),
+    DrawerItem("Safety Tips", Icons.info, false, null),
     DrawerItem("About", Icons.help, true, Text("About us")),
     DrawerItem("Logout", Icons.account_circle, false, null),
   ];
