@@ -30,16 +30,6 @@ class DonateWidget extends StatelessWidget {
   final String sampleJsonString = """
   [
     {
-        "place": "Bihar,India",
-        "year": 2017,
-        "month": 8,
-        "type": "Flood",
-        "link": "https://en.wikipedia.org/wiki/2017_Bihar_flood",
-        "affected": 514,
-        "pay_link": "http://p-y.tm/U7-qLxT",
-        "is_enabled": true
-    },
-    {
         "place": "Sulawesi, Indonesia",
         "year": 2018,
         "month": 9,
@@ -47,16 +37,6 @@ class DonateWidget extends StatelessWidget {
         "link": "https://en.wikipedia.org/wiki/2018_Sulawesi_earthquake_and_tsunami",
         "affected": 2100,
         "pay_link": "http://p-y.tm/BqQ1-ak",
-        "is_enabled": true
-    },
-    {
-        "place": "Japan",
-        "year": 2018,
-        "month": 7,
-        "type": "Flood",
-        "link": "https://en.wikipedia.org/wiki/2018_Japan_floods",
-        "affected": 225,
-        "pay_link": "http://p-y.tm/QQDZ-To",
         "is_enabled": true
     },
     {
@@ -70,16 +50,6 @@ class DonateWidget extends StatelessWidget {
         "is_enabled": true
     },
     {
-        "place": "Sumatra, Indonesia",
-        "year": 2018,
-        "month": 2,
-        "type": "Volcano",
-        "link": "https://en.wikipedia.org/wiki/Mount_Sinabung",
-        "affected": 50,
-        "pay_link": "http://p-y.tm/p9i-1ak",
-        "is_enabled": true
-    },
-    {
         "place": "North India",
         "year": 2018,
         "month": 5,
@@ -87,6 +57,26 @@ class DonateWidget extends StatelessWidget {
         "link": "https://en.wikipedia.org/wiki/2018_Indian_dust_storms",
         "affected": 125,
         "pay_link": "http://p-y.tm/g9f-ghf",
+        "is_enabled": true
+    },
+    {
+        "place": "Japan",
+        "year": 2018,
+        "month": 7,
+        "type": "Flood",
+        "link": "https://en.wikipedia.org/wiki/2018_Japan_floods",
+        "affected": 225,
+        "pay_link": "http://p-y.tm/QQDZ-To",
+        "is_enabled": true
+    },
+    {
+        "place": "Sumatra, Indonesia",
+        "year": 2018,
+        "month": 2,
+        "type": "Volcano",
+        "link": "https://en.wikipedia.org/wiki/Mount_Sinabung",
+        "affected": 50,
+        "pay_link": "http://p-y.tm/p9i-1ak",
         "is_enabled": true
     },
     {
@@ -100,12 +90,22 @@ class DonateWidget extends StatelessWidget {
         "is_enabled": true
     },
     {
-        "place": "Gujarat, India",
+        "place": "Puebela, Mexico",
         "year": 2017,
-        "month": 6,
+        "month": 9,
+        "type": "Earthquake",
+        "link": "https://en.wikipedia.org/wiki/2017_Puebla_earthquake",
+        "affected": 361,
+        "is_enabled": false
+    },
+    {
+        "place": "Bihar,India",
+        "year": 2017,
+        "month": 8,
         "type": "Flood",
-        "link": "https://en.wikipedia.org/wiki/2017_Gujarat_flood",
-        "affected": 224,
+        "link": "https://en.wikipedia.org/wiki/2017_Bihar_flood",
+        "affected": 514,
+        "pay_link": "http://p-y.tm/U7-qLxT",
         "is_enabled": false
     },
     {
@@ -118,12 +118,12 @@ class DonateWidget extends StatelessWidget {
         "is_enabled": false
     },
     {
-        "place": "Puebela, Mexico",
+        "place": "Gujarat, India",
         "year": 2017,
-        "month": 9,
-        "type": "Earthquake",
-        "link": "https://en.wikipedia.org/wiki/2017_Puebla_earthquake",
-        "affected": 361,
+        "month": 6,
+        "type": "Flood",
+        "link": "https://en.wikipedia.org/wiki/2017_Gujarat_flood",
+        "affected": 224,
         "is_enabled": false
     }]
 """;
