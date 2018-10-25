@@ -56,7 +56,7 @@ class _ScoreWidgetState extends State<ScoreWidget>
           children: <Widget>[
             Center(
               child: Text(
-                "YOUR SAFETY SCORE",
+                "YOUR RISK INDEX IS",
                 style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w300),
                 textAlign: TextAlign.center,
               ),
