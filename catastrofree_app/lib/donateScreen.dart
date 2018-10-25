@@ -3,6 +3,21 @@ import "package:url_launcher/url_launcher.dart";
 
 import 'dart:convert';
 
+Map monthMapping = {
+  1: "Jan",
+  2: "Feb",
+  3: "Mar",
+  4: "Apr",
+  5: "May",
+  6: "Jun",
+  7: "July",
+  8: "Aug",
+  9: "Sept",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec",
+};
+
 class DonateWidget extends StatelessWidget {
   _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -124,7 +139,7 @@ class DonateWidget extends StatelessWidget {
   }
 
   buildFromMap(Map map) {
-    String date = map['month'].toString() + "/" + map['year'].toString();
+    String date = monthMapping[map['month']] + "' " + map['year'].toString().substring(2,4);
     OutlineButton donate;
     if (map["is_enabled"]){
       donate = OutlineButton(
