@@ -5,28 +5,46 @@ import 'scoreWidget.dart';
 class ScoreCardsWidget extends StatelessWidget {
   List<Widget> getScoreCards() {
     List<Widget> cards = new List();
-    var cardsLength = 4;
-    for (var i = 0; i < cardsLength; i++) {
       cards.add(new Card(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const ListTile(
-            leading: Icon(Icons.report_problem),
-            title: Text("Disaster Text Here!!"),
-            subtitle: Text("Other Disaster Info"),
+            title: Text("There have been X Y's at this location."),
           ),
-          Container(
-            padding: const EdgeInsets.all(32.0),
-            child: Text(
-              '''Long long time ago disaster was a very big problem.Then one day it was all sorted by a group of BITS Pilani students who made a brilliant app called Catastrofree. It was an instant hit!. This text is deliberately long so that the developer can check that it is wrapping correctly.''',
-              softWrap: true,
-            ),
-          )
         ],
       )));
-    }
+      cards.add(new Card(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const ListTile(
+            title: Text("There have been X Y's at this location."),
+          ),
+        ],
+      )));
+      cards.add(new Card(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const ListTile(
+            title: Text("There have been X Y's at this location."),
+          ),
+        ],
+      )));
+      cards.add(new Card(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const ListTile(
+            title: Text("There have been X Y's at this location."),
+          ),
+        ],
+      )));
     return cards;
   }
 

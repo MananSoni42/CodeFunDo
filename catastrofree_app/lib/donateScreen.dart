@@ -158,7 +158,11 @@ class DonateWidget extends StatelessWidget {
     return Column(
       children: <Widget>[
         ListTile(
-            leading: Icon(Icons.assessment),
+            leading: Image(
+              image: AssetImage('assets/images/' + map["type"].toLowerCase() + '_symbol.png'),
+              width: 50.0,
+              height: 50.0,
+            ),
             title: Row(
               children: [
                 Expanded(child: Text(map['place'], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold))),
