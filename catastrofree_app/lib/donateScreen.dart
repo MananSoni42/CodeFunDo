@@ -127,17 +127,18 @@ class DonateWidget extends StatelessWidget {
 
   buildFromMap(Map map) {
     String date = map['month'].toString() + "/" + map['year'].toString();
-    FlatButton x;
+    OutlineButton donate;
     if (map["is_enabled"]){
-      x = FlatButton(
+      donate = OutlineButton(
                 child: Text("DONATE"),
                 onPressed: () => _launchURL(map["pay_link"]),
               );
     }
     else{
-      x = FlatButton(
+      donate = OutlineButton(
                 child: Text("CLOSED"),
-                onPressed: () => null,
+                borderSide: BorderSide(width: .7, color: Colors.black38),
+                onPressed: null,
               );
     }
     Widget widget1 = Column(
@@ -153,11 +154,12 @@ class DonateWidget extends StatelessWidget {
         ButtonTheme.bar(
           child: ButtonBar(
             children: <Widget>[
-              FlatButton(
+              OutlineButton(
                 child: Text("READ MORE"),
+                borderSide: BorderSide(width: .7, color: Colors.black38),
                 onPressed: () => _launchURL(map["link"]),
               ),
-              x
+              donate
             ],
           ),
         ),
