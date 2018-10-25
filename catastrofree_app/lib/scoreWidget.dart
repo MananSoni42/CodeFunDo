@@ -12,8 +12,25 @@ class ScoreWidget extends StatefulWidget {
 
 class _ScoreWidgetState extends State<ScoreWidget>
     with TickerProviderStateMixin {
+  static const Map x = {
+    0: Color(0xFFd81111),
+    1: Color(0xFFd81111),
+    2: Color(0xFFf24b4b),
+    3: Color(0xFF70e855),
+    4: Color(0xFFc68c35),
+    5: Color(0xFFe8c555),
+    6: Color(0xFFe0e855),
+    7: Color(0xFFd1e855),
+    8: Color(0xFFb2e855),
+    9: Color(0xFF8fe855),
+    10: Color(0xFF70e855),
+  };
   double finalScore = 0.0;
-  double dispScore = 0.0;
+  static double dispScore = 0.0;
+  TextStyle custom_style = TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 70.0,
+                            color: x[dispScore.toInt()]);
   Color circleColor = Colors.white;
   Color textColor = Colors.blue;
   AnimationController animation;
@@ -26,6 +43,10 @@ class _ScoreWidgetState extends State<ScoreWidget>
     )..addListener(() {
         setState(() {
           dispScore = lerpDouble(0, finalScore, animation.value);
+          custom_style = TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 70.0,
+                      color: x[dispScore.toInt()]);
         });
       });
     animation.forward();
@@ -41,6 +62,10 @@ class _ScoreWidgetState extends State<ScoreWidget>
     setState(() {
       dispScore = 0.0;
       finalScore = Random().nextDouble() * 10;
+      custom_style = TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 70.0,
+                      color: x[dispScore.toInt()]);
     });
     animation.forward(from: 0.0);
   }
@@ -75,10 +100,7 @@ class _ScoreWidgetState extends State<ScoreWidget>
               child: GestureDetector(
                 child: Text(
                   dispScore.toString().substring(0, 3),
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 70.0,
-                      color: textColor),
+                  style: custom_style,
                 ),
                 onTap: updateScore,
               ),
