@@ -1,0 +1,94 @@
+name: Catastrofree
+description: Made by EdgeTriggered for CodeFunDo++
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# Read more about versioning at semver.org.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.2
+  firebase_analytics: 0.3.0
+  firebase_auth: ^0.6.2+1
+  google_sign_in: ^3.2.1
+  firebase_messaging: ^2.0.2
+  map_view: ^0.0.14
+  url_launcher: ^4.0.1
+  location: ^1.4.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: "^0.6.1"
+
+flutter_icons:
+  image_path: "icon/icon.png"
+  android: true 
+  ios: true
+
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://www.dartlang.org/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/disasterPic.jpeg
+    - assets/images/logo.png
+    - assets/images/azure.png
+    - assets/images/earthquake_symbol.png
+    - assets/images/flood_symbol.png
+    - assets/images/storm_symbol.png
+    - assets/images/tsunami_symbol.png
+    - assets/images/volcano_symbol.png
+    - assets/images/disaster_tips_banner.jpg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.io/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.io/assets-and-images/#from-packages
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Thin.ttf
+          weight: 200
+        - asset: fonts/Roboto-ThinItalic.ttf
+          weight: 200
+          style: italic
+        - asset: fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: fonts/Roboto-BoldItalic.ttf
+          style: italic
+          weight: 700
+        - asset: fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: fonts/Roboto-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: fonts/Roboto-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: fonts/Roboto-Italic.ttf
+          weight: 400
+          style: italic

@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "326508055362",
+    "firebase_url": "https://cfd-catastrofree.firebaseio.com",
+    "project_id": "cfd-catastrofree",
+    "storage_bucket": "cfd-catastrofree.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326508055362:android:d84d585fd7d6a153",
+        "android_client_info": {
+          "package_name": "com.edge.catastrofree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326508055362-q6br6p19m6temfm1c3l4qj606dofeddi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edge.catastrofree",
+            "certificate_hash": "57cd33efbae32ffcd2eb7f389fde2762f783f566"
+          }
+        },
+        {
+          "client_id": "326508055362-3hnfgrsfpnnd9fpkcvqh71hvosujodts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edge.catastrofree",
+            "certificate_hash": "2a3f02231c2be642b37974a1b2e37f1a2abbec66"
+          }
+        },
+        {
+          "client_id": "326508055362-u5ol6halngq1le8area01bijobdjiqnh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edge.catastrofree",
+            "certificate_hash": "e246b480b43b4fea4a682bcfe4e2ced03b8bf970"
+          }
+        },
+        {
+          "client_id": "326508055362-ap4jnpu5us93ldc576qmst7bppfdt9pe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSW0ndoqUJlYHoTWtJKNUqLSsrPh-Eu7Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326508055362-ap4jnpu5us93ldc576qmst7bppfdt9pe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

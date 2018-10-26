@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "326508055362",
+    "firebase_url": "https://cfd-catastrofree.firebaseio.com",
+    "project_id": "cfd-catastrofree",
+    "storage_bucket": "cfd-catastrofree.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326508055362:android:d84d585fd7d6a153",
+        "android_client_info": {
+          "package_name": "com.edge.catastrofree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326508055362-ap4jnpu5us93ldc576qmst7bppfdt9pe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSW0ndoqUJlYHoTWtJKNUqLSsrPh-Eu7Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

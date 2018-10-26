@@ -1,0 +1,8 @@
+android/
+build/
+ios/
+test/
+.flutter-plugins
+.metadata
+.packages
+pubspec.lock
