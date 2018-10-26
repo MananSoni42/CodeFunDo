@@ -41,12 +41,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!-- <activity android:name="com.apptreesoftware.mapview.MapActivity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/> -->
-    <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDYE0aMg1wP17B0GPB5hhiZnLctoo5CXDA"/>
-    <!-- <meta-data android:name="com.google.android.gms.version" android:value="AIzaSyDYE0aMg1wP17B0GPB5hhiZnLctoo5CXDA"/> -->
+        <!-- <activity android:name="com.apptreesoftware.mapview.MapActivity" /> -->
+        <activity android:name="com.apptreesoftware.mapview.MapActivity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+    <!-- <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDwk8miCPs0uLc0IsPPvmg2zMOxZtfTcfg"/> -->
+    <!-- <meta-data android:name="com.google.android.gms.version" android:value="AIzaSyDwk8miCPs0uLc0IsPPvmg2zMOxZtfTcfg"/> -->
         <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyDYE0aMg1wP17B0GPB5hhiZnLctoo5CXDA"/>
+        android:name="com.google.android.geo.API_KEY"    
+        android:value="AIzaSyDwk8miCPs0uLc0IsPPvmg2zMOxZtfTcfg"/>
     </application>
     <!-- <service android:name=".java.MyFirebaseMessagingService">
         <intent-filter>
