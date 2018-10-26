@@ -11,7 +11,53 @@ import 'map_screen.dart';
 import 'scoreCards.dart';
 import 'standardScaffold.dart';
 import 'tutorialScreen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'package:location/location.dart' as location_api;
 
+
+Future<Null> sendRequest(FirebaseMessaging _firebaseMessaging, String token,
+    Map<String, double> currentLocation) async {
+  print("Attempting to message");
+  var jsonSending = {
+    "token": token,
+    "latitude": currentLocation["latitude"],
+    "longitude": currentLocation["longitude"],
+  };
+  print("Sending");
+  http.post(
+    'http://137.117.110.63:5000/score',
+    body: json.encode(jsonSending),
+    headers: {HttpHeaders.CONTENT_TYPE: "application/json"},
+  ).then((response) {
+    print('response was ${response.statusCode.toString()}');
+    print('app sent : ${response.body.toString()}');
+  }).catchError((err) {
+    print("ERROR:");
+    print(err);
+  });
+  return null;
+}
+
+/* class MessagingTestWidget extends StatelessWidget{
+  final FirebaseMessaging fcmObj;
+  MessagingTestWidget(this.fcmObj);
+  @override
+  Widget build(BuildContext context) {
+    return ListView(children: <Widget>[
+      Center(
+        child: FlatButton(
+        child: Text("TEST MESSAGING"),
+        onPressed : (){
+          sendRequest(this.fcmObj);
+          },
+      ),)
+    ],);
+  }
+}
+ */
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
 ThemeData _buildShrineTheme() {
@@ -37,10 +83,12 @@ void main() {
 
 class MyAppHome extends StatefulWidget {
   final drawerItems = [
-    DrawerItem("Safety Score", Icons.developer_board, true, Text("Safety Score")),
+    DrawerItem(
+        "Safety Score", Icons.developer_board, true, Text("Safety Score")),
     DrawerItem(
         "Donate", Icons.monetization_on, true, Text("Donate for Relief Funds")),
-    DrawerItem("I AM UNSAFE !", Icons.directions, true, Text("Find Safe Spots Nearby")),
+    DrawerItem("I AM UNSAFE !", Icons.directions, true,
+        Text("Find Safe Spots Nearby")),
     DrawerItem("Safety Tips", Icons.info, false, null),
     DrawerItem("About", Icons.help, true, Text("About us")),
     DrawerItem("Logout", Icons.account_circle, false, null),
@@ -52,26 +100,35 @@ class MyAppHome extends StatefulWidget {
 }
 
 class _MyAppHomeState extends State<MyAppHome> {
-  FirebaseMessaging _firebaseMessaging;
+  FirebaseMessaging firebaseMessaging;
   static bool loggedIn = false;
+  Map<String, double> myLocation = {
+    "latitude": 42.0,
+    "longitude": 42.0,
+  };
+  sendCallback(){
+  sendRequest(firebaseMessaging, myToken, myLocation);
+}
   String myToken;
   int _selectedDrawerIndex = 0;
   int get selectedDrawerIndex => _selectedDrawerIndex;
   set selectedDrawerIndex(int value) {
+    _selectedDrawerIndex = value;
     setState(() {
       _selectedDrawerIndex = value;
       Navigator.of(context).pop();
     });
   }
 
+  var myMapWidget = MapWidget();
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return ScoreCardsWidget();
+        return ScoreCardsWidget(sendCallback);
       case 1:
         return DonateWidget();
       case 2:
-        return MapWidget();
+        return myMapWidget;
       case 3:
         return TipsList();
       case 4:
@@ -90,27 +147,46 @@ class _MyAppHomeState extends State<MyAppHome> {
         return Text("Out of bounds widget!");
     }
   }
-  
 
   callback(newLoggedIn) {
-    try{
-    setState(() {
-      loggedIn = newLoggedIn;
-    });
-    }catch(e){
+    try {
+      setState(() {
+        loggedIn = newLoggedIn;
+      });
+    } catch (e) {
       print(e);
-    } 
+    }
   }
 
+  alertUser() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text("Are you safe?"),
+            actions: <Widget>[
+              FlatButton(
+                child: const Text('YES'),
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+              ),
+              FlatButton(
+                child: const Text('NO'),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  location_api.Location location;
   @override
   void initState() {
-    super.initState();
-    checkLoggedIn();
-    this._firebaseMessaging = FirebaseMessaging();
-    _firebaseMessaging.requestNotificationPermissions();
-    _firebaseMessaging.configure();
-    Future<Null> genToken() async {
-      this.myToken = await _firebaseMessaging
+    Future<Null> genToken(location_api.Location location) async {
+      this.myToken = await firebaseMessaging
           .getToken()
           .timeout(Duration(seconds: 30))
           .catchError((err) {
@@ -118,9 +194,37 @@ class _MyAppHomeState extends State<MyAppHome> {
         print(err.toString());
       });
       print(myToken);
+      Map<String, double> currentLocation = await location.getLocation();
+      myLocation = currentLocation;
+      location.onLocationChanged().listen((Map<String, double> result) {
+        setState(() {
+          currentLocation = result;
+        });
+      });
+      sendRequest(firebaseMessaging, myToken, currentLocation);
     }
 
-    genToken();
+    location = location_api.Location();
+    super.initState();
+    checkLoggedIn();
+    this.firebaseMessaging = FirebaseMessaging();
+    genToken(location);
+    firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) {
+        print('on message $message');
+        alertUser();
+      },
+      onResume: (Map<String, dynamic> message) {
+        print('on resume $message');
+        alertUser();
+      },
+      onLaunch: (Map<String, dynamic> message) {
+        print('on launch $message');
+        alertUser();
+      },
+    );
+    firebaseMessaging.requestNotificationPermissions();
+    //firebaseMessaging.configure();
   }
 
   Future<void> checkLoggedIn() async {
@@ -129,6 +233,7 @@ class _MyAppHomeState extends State<MyAppHome> {
       loggedIn = currentUser != null;
     });
   }
+
   Tutorial tutorial;
   @override
   Widget build(BuildContext context) {
@@ -153,6 +258,13 @@ class _MyAppHomeState extends State<MyAppHome> {
             child: ListView(
           children: <Widget>[
             StdUserAccountDrawerHeader(),
+            DrawerHeader(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Your location\n"),
+              Text("Latitude: ${myLocation["latitude"]}"),
+              Text("Longitude: ${myLocation["longitude"]}")
+            ])),
             Column(
               children: drawerOptions,
             ),

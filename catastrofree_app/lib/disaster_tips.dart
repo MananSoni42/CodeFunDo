@@ -22,7 +22,7 @@ class _TipsListState extends State<TipsList> {
         false,
         'Stuck in an Earthquake ?',
         Text(
-            " • Take cover under a desk or table\n • If outdoors, get away from buildings, trees, and power lines and drop to the ground\n • If you are in bed, hold on and stay there, protecting your head with a pillow.\n • If you are in a car, slow down and drive to a clear place",
+            " • Try to take cover under a desk or table\n • If outdoors, get away from buildings and power lines\n • If you are in bed, protect your head with a pillow.\n • If you are in a car, slow down and drive to a clear place",
             softWrap: true, style: TextStyle(fontSize: 15.0)),
         Image(
           image: AssetImage('assets/images/earthquake_symbol.png'),
@@ -54,7 +54,7 @@ class _TipsListState extends State<TipsList> {
         false,
         'Stuck in a Tsunami ?',
         Text(
-            " • Protect windows with plywood boards, or storm shutters\n • Have several days supply of food and water for everyone\n • Remain indoors when the eye moves over your area because the storm will resume shortly\n • Monitor Weather and Civil Service Bulletins on either regular or NOAA radio\n",
+            " • Protect windows with plywood boards\n • Have several days supply of food and water\n • Remain indoors when the eye moves over your area\n • Monitor Weather and Civil Bulletins on NOAA radio\n",
             softWrap: true, style: TextStyle(fontSize: 15.0)),
         Image(
           image: AssetImage('assets/images/tsunami_symbol.png'),
