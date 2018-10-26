@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'scoreWidget.dart';
 
 class ScoreCardsWidget extends StatelessWidget {
+  final Function callback;
+  ScoreCardsWidget(this.callback);
   List<Widget> getScoreCards() {
     List<Widget> cards = new List();
       cards.add(new Card(
@@ -62,7 +64,7 @@ class ScoreCardsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = getScoreCards();
-    children.insert(0, Container(child: ScoreWidget()));
+    children.insert(0, Container(child: ScoreWidget(callback)));
     Widget centralWidget = ListView(
         children: children);
     return centralWidget;

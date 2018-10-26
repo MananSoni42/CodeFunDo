@@ -15,24 +15,26 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:location/location.dart' as location_api;
 
-Future<Null> sendRequest(FirebaseMessaging _firebaseMessaging, String token) async{  
+
+Future<Null> sendRequest(FirebaseMessaging _firebaseMessaging, String token,
+    Map<String, double> currentLocation) async {
   print("Attempting to message");
-  var jsonSending ={
+  var jsonSending = {
     "token": token,
-    "latitude": "69",
-    "longitude": "42",
-    "unsafe":"0",
+    "latitude": currentLocation["latitude"],
+    "longitude": currentLocation["longitude"],
   };
   print("Sending");
   http.post(
-    'http://137.117.110.63:5000/data',
+    'http://137.117.110.63:5000/score',
     body: json.encode(jsonSending),
     headers: {HttpHeaders.CONTENT_TYPE: "application/json"},
-  ).then((response){
+  ).then((response) {
     print('response was ${response.statusCode.toString()}');
     print('app sent : ${response.body.toString()}');
-  }).catchError((err){
+  }).catchError((err) {
     print("ERROR:");
     print(err);
   });
@@ -98,22 +100,31 @@ class MyAppHome extends StatefulWidget {
 }
 
 class _MyAppHomeState extends State<MyAppHome> {
-  FirebaseMessaging _firebaseMessaging;
+  FirebaseMessaging firebaseMessaging;
   static bool loggedIn = false;
+  Map<String, double> myLocation = {
+    "latitude": 42.0,
+    "longitude": 42.0,
+  };
+  sendCallback(){
+  sendRequest(firebaseMessaging, myToken, myLocation);
+}
   String myToken;
   int _selectedDrawerIndex = 0;
   int get selectedDrawerIndex => _selectedDrawerIndex;
   set selectedDrawerIndex(int value) {
+    _selectedDrawerIndex = value;
     setState(() {
       _selectedDrawerIndex = value;
       Navigator.of(context).pop();
     });
   }
+
   var myMapWidget = MapWidget();
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return ScoreCardsWidget();
+        return ScoreCardsWidget(sendCallback);
       case 1:
         return DonateWidget();
       case 2:
@@ -147,10 +158,35 @@ class _MyAppHomeState extends State<MyAppHome> {
     }
   }
 
+  alertUser() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text("Are you safe?"),
+            actions: <Widget>[
+              FlatButton(
+                child: const Text('YES'),
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+              ),
+              FlatButton(
+                child: const Text('NO'),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  location_api.Location location;
   @override
   void initState() {
-    Future<Null> genToken() async {
-      this.myToken = await _firebaseMessaging
+    Future<Null> genToken(location_api.Location location) async {
+      this.myToken = await firebaseMessaging
           .getToken()
           .timeout(Duration(seconds: 30))
           .catchError((err) {
@@ -158,38 +194,22 @@ class _MyAppHomeState extends State<MyAppHome> {
         print(err.toString());
       });
       print(myToken);
-      sendRequest(_firebaseMessaging, myToken);
+      Map<String, double> currentLocation = await location.getLocation();
+      myLocation = currentLocation;
+      location.onLocationChanged().listen((Map<String, double> result) {
+        setState(() {
+          currentLocation = result;
+        });
+      });
+      sendRequest(firebaseMessaging, myToken, currentLocation);
     }
 
-    alertUser() {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              content: Text("Are you safe?"),
-              actions: <Widget>[
-                FlatButton(
-                  child: const Text('YES'),
-                  onPressed: () {
-                    Navigator.pop(context, false);
-                  },
-                ),
-                FlatButton(
-                  child: const Text('NO'),
-                  onPressed: () {
-                    Navigator.pop(context, true);
-                  },
-                ),
-              ],
-            );
-          });
-    }
-
+    location = location_api.Location();
     super.initState();
     checkLoggedIn();
-    this._firebaseMessaging = FirebaseMessaging();
-    genToken();
-    _firebaseMessaging.configure(
+    this.firebaseMessaging = FirebaseMessaging();
+    genToken(location);
+    firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) {
         print('on message $message');
         alertUser();
@@ -203,8 +223,8 @@ class _MyAppHomeState extends State<MyAppHome> {
         alertUser();
       },
     );
-    _firebaseMessaging.requestNotificationPermissions();
-    _firebaseMessaging.configure();
+    firebaseMessaging.requestNotificationPermissions();
+    //firebaseMessaging.configure();
   }
 
   Future<void> checkLoggedIn() async {
@@ -238,6 +258,13 @@ class _MyAppHomeState extends State<MyAppHome> {
             child: ListView(
           children: <Widget>[
             StdUserAccountDrawerHeader(),
+            DrawerHeader(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Your location\n"),
+              Text("Latitude: ${myLocation["latitude"]}"),
+              Text("Longitude: ${myLocation["longitude"]}")
+            ])),
             Column(
               children: drawerOptions,
             ),

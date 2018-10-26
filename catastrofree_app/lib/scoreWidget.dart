@@ -4,6 +4,8 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 class ScoreWidget extends StatefulWidget {
+  final Function callback;
+  ScoreWidget(this.callback);
   @override
   _ScoreWidgetState createState() {
     return _ScoreWidgetState();
@@ -60,8 +62,9 @@ class _ScoreWidgetState extends State<ScoreWidget>
 
   void updateScore() {
     setState(() {
+      widget.callback();
       dispScore = 0.0;
-      finalScore = Random().nextDouble() * 10;
+      finalScore = 7.1+ Random().nextDouble() /10;
       custom_style = TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 70.0,
