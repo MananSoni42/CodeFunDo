@@ -13,17 +13,17 @@ class ScoreWidget extends StatefulWidget {
 class _ScoreWidgetState extends State<ScoreWidget>
     with TickerProviderStateMixin {
   static const Map x = {
-    0: Color(0xFFd81111),
-    1: Color(0xFFd81111),
-    2: Color(0xFFf24b4b),
-    3: Color(0xFF70e855),
-    4: Color(0xFFc68c35),
+    10: Color(0xFFd81111),
+    9: Color(0xFFd81111),
+    8: Color(0xFFf24b4b),
+    7: Color(0xFFf24b4b),
+    6: Color(0xFFc68c35),
     5: Color(0xFFe8c555),
-    6: Color(0xFFe0e855),
-    7: Color(0xFFd1e855),
-    8: Color(0xFFb2e855),
-    9: Color(0xFF8fe855),
-    10: Color(0xFF70e855),
+    4: Color(0xFFe0e855),
+    3: Color(0xFFd1e855),
+    2: Color(0xFF8fe855),
+    1: Color(0xFF8fe855),
+    0: Color(0xFF70e855),
   };
   double finalScore = 0.0;
   static double dispScore = 0.0;
