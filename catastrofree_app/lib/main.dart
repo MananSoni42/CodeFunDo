@@ -11,7 +11,51 @@ import 'map_screen.dart';
 import 'scoreCards.dart';
 import 'standardScaffold.dart';
 import 'tutorialScreen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
+Future<Null> sendRequest(FirebaseMessaging _firebaseMessaging, String token) async{  
+  print("Attempting to message");
+  var jsonSending ={
+    "token": token,
+    "latitude": "69",
+    "longitude": "42",
+    "unsafe":"0",
+  };
+  print("Sending");
+  http.post(
+    'http://137.117.110.63:5000/data',
+    body: json.encode(jsonSending),
+    headers: {HttpHeaders.CONTENT_TYPE: "application/json"},
+  ).then((response){
+    print('response was ${response.statusCode.toString()}');
+    print('app sent : ${response.body.toString()}');
+  }).catchError((err){
+    print("ERROR:");
+    print(err);
+  });
+  return null;
+}
+
+/* class MessagingTestWidget extends StatelessWidget{
+  final FirebaseMessaging fcmObj;
+  MessagingTestWidget(this.fcmObj);
+  @override
+  Widget build(BuildContext context) {
+    return ListView(children: <Widget>[
+      Center(
+        child: FlatButton(
+        child: Text("TEST MESSAGING"),
+        onPressed : (){
+          sendRequest(this.fcmObj);
+          },
+      ),)
+    ],);
+  }
+}
+ */
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
 ThemeData _buildShrineTheme() {
@@ -37,10 +81,12 @@ void main() {
 
 class MyAppHome extends StatefulWidget {
   final drawerItems = [
-    DrawerItem("Safety Score", Icons.developer_board, true, Text("Safety Score")),
+    DrawerItem(
+        "Safety Score", Icons.developer_board, true, Text("Safety Score")),
     DrawerItem(
         "Donate", Icons.monetization_on, true, Text("Donate for Relief Funds")),
-    DrawerItem("I AM UNSAFE !", Icons.directions, true, Text("Find Safe Spots Nearby")),
+    DrawerItem("I AM UNSAFE !", Icons.directions, true,
+        Text("Find Safe Spots Nearby")),
     DrawerItem("Safety Tips", Icons.info, false, null),
     DrawerItem("About", Icons.help, true, Text("About us")),
     DrawerItem("Logout", Icons.account_circle, false, null),
@@ -63,7 +109,7 @@ class _MyAppHomeState extends State<MyAppHome> {
       Navigator.of(context).pop();
     });
   }
-
+  var myMapWidget = MapWidget();
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
@@ -71,7 +117,7 @@ class _MyAppHomeState extends State<MyAppHome> {
       case 1:
         return DonateWidget();
       case 2:
-        return MapWidget();
+        return myMapWidget;
       case 3:
         return TipsList();
       case 4:
@@ -90,25 +136,19 @@ class _MyAppHomeState extends State<MyAppHome> {
         return Text("Out of bounds widget!");
     }
   }
-  
 
   callback(newLoggedIn) {
-    try{
-    setState(() {
-      loggedIn = newLoggedIn;
-    });
-    }catch(e){
+    try {
+      setState(() {
+        loggedIn = newLoggedIn;
+      });
+    } catch (e) {
       print(e);
-    } 
+    }
   }
 
   @override
   void initState() {
-    super.initState();
-    checkLoggedIn();
-    this._firebaseMessaging = FirebaseMessaging();
-    _firebaseMessaging.requestNotificationPermissions();
-    _firebaseMessaging.configure();
     Future<Null> genToken() async {
       this.myToken = await _firebaseMessaging
           .getToken()
@@ -118,9 +158,53 @@ class _MyAppHomeState extends State<MyAppHome> {
         print(err.toString());
       });
       print(myToken);
+      sendRequest(_firebaseMessaging, myToken);
     }
 
+    alertUser() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text("Are you safe?"),
+              actions: <Widget>[
+                FlatButton(
+                  child: const Text('YES'),
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                ),
+                FlatButton(
+                  child: const Text('NO'),
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                ),
+              ],
+            );
+          });
+    }
+
+    super.initState();
+    checkLoggedIn();
+    this._firebaseMessaging = FirebaseMessaging();
     genToken();
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) {
+        print('on message $message');
+        alertUser();
+      },
+      onResume: (Map<String, dynamic> message) {
+        print('on resume $message');
+        alertUser();
+      },
+      onLaunch: (Map<String, dynamic> message) {
+        print('on launch $message');
+        alertUser();
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions();
+    _firebaseMessaging.configure();
   }
 
   Future<void> checkLoggedIn() async {
@@ -129,6 +213,7 @@ class _MyAppHomeState extends State<MyAppHome> {
       loggedIn = currentUser != null;
     });
   }
+
   Tutorial tutorial;
   @override
   Widget build(BuildContext context) {
